@@ -6,6 +6,7 @@
 {% block stylesheet %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/reveal.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/serif.css' %}" type="text/css" id="theme">
     <style type="text/css">
         aside.controls {
             margin-bottom: 30px;
@@ -19,12 +20,14 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h1>Single Horizontal Slide</h1>
+                    <h2>{{ name }}</h2>
+                    <h3>{{ presentation }}</h3>
                 </section>
+                {% block slides %}
                 <section>
-                    <section>Vertical Slide 1</section>
-                    <section>Vertical Slide 2</section>
+                    <p>TODO: Add more slides!</p>
                 </section>
+                {% endblock %}
             </div>
         </div>
 
@@ -49,6 +52,7 @@
 
 {% block javascript %}
     {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/head.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/reveal.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
