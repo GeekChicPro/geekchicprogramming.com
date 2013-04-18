@@ -1,30 +1,58 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}GeekChic | {{ presentation }}{% endblock %}
 
-{% block main %}
+{% block stylesheet %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/reveal.css' %}" type="text/css">
+    <style type="text/css">
+        aside.controls {
+            margin-bottom: 30px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Single Horizontal Slide</h1>
+                </section>
+                <section>
+                    <section>Vertical Slide 1</section>
+                    <section>Vertical Slide 2</section>
+                </section>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block footer %}
     
-<div id="main" class="container">
-    <div class="row">
-        <div class="span10 offset1">
-            <div class="page-header">
-                <h2>{{ presentation }}</h2>
-                <ul class="breadcrumb">
-                    <li><a href="{% url 'syllabus' %}">{{ name }}</a> <span class="divider">&middot;</span></li>
-                    <li class="active">Presentation <span class="divider">&middot;</span></li>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="{% url 'syllabus' %}">{{ presentation }}</a>
+                <ul class="nav pull-right">
+                    <li class="active"><a href=".">Presentation</a></li>
                     <li><a href="{% url 'module' module=module doctype='workshop' %}">Workshop</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="span10 offset1">
-        {% block content %}
-        <p>TODO: Write</p>
-        {% endblock %}
-        </div>
-    </div>
-</div>
+{% endblock %}
 
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/reveal.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Reveal.initialize();
+        });
+    </script>
 {% endblock %}

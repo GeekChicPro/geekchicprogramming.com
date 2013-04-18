@@ -33,6 +33,8 @@
     {% block navbar %}
         {% include 'navbar.html' %}
     {% endblock %}
+    
+    {% block body %}
 
     <div id="wrapper" class="container">
         {% block main %}
@@ -41,6 +43,8 @@
         </div>
         {% endblock %}
     </div><!-- Page Ends -->
+
+    {% endblock %}
 
     {%  block footer %}
         {% include 'footer.html' %}
