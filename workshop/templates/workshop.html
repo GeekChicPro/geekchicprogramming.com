@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}GeekChic | {{ workshop }}{% endblock %}
+
+{% block main %}
+    
+<div id="main" class="container">
+    <div class="row">
+        <div class="span10 offset1">
+            <div class="page-header">
+                <h2>{{ workshop }}</h2>
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'syllabus' %}">{{ name }}</a> <span class="divider">&middot;</span></li>
+                    <li><a href="{% url 'module' module=module doctype='presentation' %}">Presentation</a> <span class="divider">&middot;</span></li>
+                    <li class="active">Workshop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span10 offset1">
+        {% block content %}
+        <p>TODO: Write</p>
+        {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

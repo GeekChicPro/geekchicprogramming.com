@@ -76,3 +76,11 @@ ul.legal-nav li {
 div.legal-nav li.sep {
     font-size: 1.2em;
 }
+
+dl.dl-schedule dt {
+    width: 70px;
+}
+
+dl.dl-schedule dd {
+    margin-left: 90px;
+}
