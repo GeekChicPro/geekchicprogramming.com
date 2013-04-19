@@ -1,1 +1,79 @@
 {% extends 'presentation.html' %}
+{% load staticfiles %}
+
+{% block slides %}
+    <section>
+        <h2>What We'll Need:</h2>
+        <ul>
+            <li>A Terminal</li>
+            <li>Python</li>
+            <li>Django</li>
+            <li>A Text Editor</li>
+            <li>Project Files</li>
+        </ul>
+        <hr />
+        <p>All of these things are free as in free beer!<br />They are also Open Source.</p>
+    </section>
+
+    <section>
+        <section>
+            <h2>Operating Systems</h2>
+            <a class="image" href="{% static 'img/apple-icon.png' %}"><img src="{% static 'img/apple-icon.png' %}" /></a>
+            <a class="image" href="{% static 'img/windows-icon.png' %}"><img src="{% static 'img/windows-icon.png' %}" /></a>
+            <a class="image" href="{% static 'img/ubuntu-icon.png' %}"><img src="{% static 'img/ubuntu-icon.png' %}" /></a>
+        </section>
+        <section>
+            <h2>Unix and Linux</h2>
+            <p>(Includes OS X)</p>
+            <a class="image" href="{% static 'img/apple-icon.png' %}"><img src="{% static 'img/apple-icon.png' %}" /></a>
+            <a class="image" href="{% static 'img/ubuntu-icon.png' %}"><img src="{% static 'img/ubuntu-icon.png' %}" /></a>
+            <p>You're pretty much good to go!</p>
+        </section>
+        <section>
+            <h2>Windows</h2>
+            <a class="image" href="{% static 'img/windows-icon.png' %}"><img src="{% static 'img/windows-icon.png' %}" /></a>
+            <p>A Different Environment - not a bad one!</p>
+            <p>We'll use <a href="http://www.cygwin.com/">Cygwin</a> to keep everyone on the same page in our class.</p>
+        </section>
+    </section>
+    <section>
+        <h2>What is Python?</h2>
+        <ul>
+            <li class="fragment" data-fragment-index="0">named after Monty Python, not snakes</li>
+            <li class="fragment" data-fragment-index="1">an easy and intuitive language 
+            <li class="fragment" data-fragment-index="2">as powerful as major competitors</li>
+            <li class="fragment" data-fragment-index="3">open source, so anyone can contribute to it</li>
+            <li class="fragment" data-fragment-index="4">code that is as understandable as plain English</li>
+            <li class="fragment" data-fragment-index="5">suitable for everday tasks</li>
+            <li class="fragment" data-fragment-index="6">short development times</li>
+        </ul>
+        <hr />
+        <p><small class="fragment" data-fragment-index="7">*From Wikipedia's article on <a href="http://en.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum.</a></small></p>
+    </section>
+    <section>
+        <h2>Why Django?</h2>
+        <ul>
+            <li class="fragment" data-fragment-index="0">because it's high level</li>
+            <li class="fragment" data-fragment-index="1">it's written in Python</li>
+            <li class="fragment" data-fragment-index="2">it encourages rapid web development</li>
+            <li class="fragment" data-fragment-index="3">it encourages clean, pragmatic design</li>
+            <li class="fragment" data-fragment-index="4">batteries are included!</li>
+            <li class="fragment" data-fragment-index="5"><em>it will get you a job!</em></li>
+        </ul>
+    </section>
+    <section>
+        <h2>A note on Databases</h2>
+        <p>We're not installing any!?</p>
+        <a class="image" href="http://i.qkme.me/2ioc.jpg"><img src="http://i.qkme.me/2ioc.jpg"></a>
+    </section>
+    <section>
+        <h2>So... that's it?</h2>
+        <p>Yep! Django and Python are awesome, they're free and open source;
+        and all you need is a Terminal and a Text Editor!</p>
+        <p>We'll be using Sublime Text 2 for a bit of a leg up.</p>
+    </section>
+    <section>
+        <h2>Let's get installing!</h2>
+        <p><a href="{% url 'module' module=module doctype='workshop' %}">{{ workshop }}</a></p>
+    </section>
+{% endblock %}

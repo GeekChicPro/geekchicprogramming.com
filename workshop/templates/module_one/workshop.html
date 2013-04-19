@@ -1,1 +1,259 @@
 {% extends 'workshop.html' %}
+
+{% block content %}
+    <p class="muted">Time to Success: 30-45 minutes</p>
+
+    <p>In order to successfully complete this workshop, you'll have to
+    create a development environment by installing some software and 
+    configuring your machine. This can often be difficult becuase of the
+    various operating systems that you and your classmates have. We'll do
+    our best to create a homogenous environment in this workshop.</p>
+
+    <p>Follow the instructions for your operating system. If you run into
+    any problems, don't panic- invite the instructor over!</p>
+
+    <ul>
+        <li><a href="#mac">Setup for OS X</a></li>
+        <li><a href="#windows">Setup for Windows</a></li>
+        <li><a href="#ubuntu">Setup for Ubuntu</a></li>
+    </ul>
+
+    <hr />
+
+    <h3 id="mac">Setup for OS X</a></h3>
+    <p><strong>Step 1.</strong> Install Python</p>
+    <p>GREAT NEWS! Since you're on OS X, Python has already been installed
+    for you. Most Unix/Linux systems come with Python already on it!</p>
+    <p>To verify, open a terminal (see Step 2) and type python at the prompt.
+    you should see something very similar to the code below:</p>
+    <pre>
+        $ python
+        Python 2.7.2 (default, Oct 11 2012, 20:14:37) 
+        [GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
+        Type "help", "copyright", "credits" or "license" for more information.
+        &gt;&gt;&gt;</pre>
+
+    <p>Type <code>exit()</code> to get out of python interpreter.</p>
+
+    <p><strong>Step 2.</strong> Install a Terminal</p>
+    <p>MORE GOOD NEWS! Again, OS X already comes with a built in Terminal
+    that's ready to use. You can find it under in the Utilities directory of
+    your Applications folder. You can also type in Terminal in Spotlight search
+    and that should open it up also. It might be a good idea to add this to
+    your dock, or create a shortcut on your desktop, since we're going to be
+    using it a fair amount.</p>
+    <ol>
+        <li>Go to your Applications directory</li>
+        <li>Double click Utilities</li>
+        <li>Drag the Terminal to your Dock</li>
+    </ol>
+    <p class="text-info">If you're familiar with the Terminal, as your instructor
+    about iTerm - a Mac Terminal with more functionality.</p>
+
+    <p><strong>Step 3.</strong> Install Django</p>
+    <p>Now the fun begins!</p>
+
+    <ol>
+        <li>Download <a href="https://www.djangoproject.com/download/">the latest release of Django</a></li>
+        <li>Go to your Downloads directory</li>
+        <li>Double click the Django-1.5.1.tar.gz file -- it should unpack to a folder</li>
+        <li>Open a Terminal (see Step 2)</li>
+        <li>Type: <code>cd ~/Downloads/Django.1.5.1</code></li>
+        <li>Type: <code>sudo python setup.py install</code></li>
+        <li>You'll probably have to type the password to your computer now.</li>
+        <li>You should see a bunch of stuff start scrolling down the screen</li>
+        <li>Check to see if it worked:</li>
+        <ol>
+            <li>In the terminal type <code>python</code></li>
+            <li>You should see the <code>&gt;&gt;&gt;</code> prompt.</li>
+            <li>Type: <code>import django</code></li>
+            <li><em>Nothing should happen</em> If you get an error, tell an instructor.</li>
+            <li>Type: <code>exit()</code></li>
+        </ol>
+        <li>Done!</li>
+    </ol>
+
+    <p><strong>Step 4.</strong> Install Sublime Text</p>
+    <p>Most people are surprised to find out that all you need to code is
+    a simple text editor- nothing fancy. In fact, you want the simplest 
+    possible editor you can find! Although there are many Integrated Development
+    Environments (IDEs) out there, we'll use Sublime Text:</p>
+
+    <ol>
+        <li><a href="http://www.sublimetext.com/2">Download Sublime Text and install it</a></li>
+    </ol>
+
+    <p><strong>Step 5.</strong> Setup the Project Files</p>
+    <p>We've pre-written some code for you to make the short time we have
+    in the workshop go easier.</p>
+
+    <ol>
+        <li><a href="#">Download the Project</a></li>
+        <li>Unpack the zip folder on your desktop</li>
+    </ol>
+
+    <hr />
+    <h3 id="windows">Setup for Windows</a></h3>
+    <p><strong>Step 1.</strong> Install Python</p>
+    <p>Unfortunately Windows doesn't natively come with Python so we're going
+    to have to do some wrangling to get it on your system.</p>
+
+    <ol>
+        <li>Download <a href="http://www.python.org/getit/releases/2.7.4/">version 2.7 of Python</a></li>
+        <li>Use the Windows installer to install Python</li>
+    </ol>
+
+    <p class="text-success">You now have Python installed on your computer. You
+    may want to look into editing the <code>PATH</code> environment variable 
+    to ensure that python is in any Command Prompt. However, we will not be
+    using native Windows command prompts in this class.</p>
+
+    <p>You can test Python by opening up an IDLE terminal from your applications
+    or Start menu.</p>
+
+    <p><strong>Step 2.</strong> Install a Terminal</p>
+    <p>So that everyone is on the same page, for this class, we're going to
+    use <a href="http://cygwin.com/index.html">Cygwin</a> as our emulator.
+    In the work environment, it is likely that you'll have to use a Linux or
+    Unix Terminal, so it's good to get used to it.</p>
+
+    <ol>
+        <li>Download <a href="http://cygwin.com/install.html">setup.exe</a> from Cygwin</li>
+        <li>Right click setup.exe and Run as Administrator</li>
+        <li>Follow the Instructions in the setup suite</li>
+        <li>When you get to the section where it prompts you for software:</li>
+        <ol>
+            <li>Go to the "interpreters" section</li>
+            <li>Ensure that python is checked</li>
+        </ol>
+    </ol>
+
+    <p>At this point you might want to create a shortcut to the cygwin application
+    on your desktop or in your quick launch bar since we'll be using it frequently.</p>
+
+    <p><strong>Step 3.</strong> Install Django</p>
+    <p>Installing Django is also going to be a bit tricky.</p>
+
+    <ol>
+        <li>Download <a href="https://www.djangoproject.com/download/">the latest release of Django</a></li>
+        <li>Open a Cygwin Terminal as Administrator (see Step 2)</li>
+        <li>Type: <code>cd ~/Downloads/</code></li>
+        <li>Type: <code>tar -xzvf Django-1.5.1.tar.gz</code> -- it should unpack to a folder</li>
+        <li>Type: <code>cd Django.1.5.1</code></li>
+        <li>Type: <code>python setup.py install</code></li>
+        <li>You should see a bunch of stuff start scrolling down the screen</li>
+        <li>Check to see if it worked:</li>
+        <ol>
+            <li>In the terminal type <code>python</code></li>
+            <li>You should see the <code>&gt;&gt;&gt;</code> prompt.</li>
+            <li>Type: <code>import django</code></li>
+            <li><em>Nothing should happen</em> If you get an error, tell an instructor.</li>
+            <li>Type: <code>exit()</code></li>
+        </ol>
+        <li>Done!</li>
+    </ol>
+
+
+    <p><strong>Step 4.</strong> Install Sublime Text</p>
+    <p>Most people are surprised to find out that all you need to code is
+    a simple text editor- nothing fancy. In fact, you want the simplest 
+    possible editor you can find! Although there are many Integrated Development
+    Environments (IDEs) out there, we'll use Sublime Text:</p>
+
+    <ol>
+        <li><a href="http://www.sublimetext.com/2">Download Sublime Text and install it</a></li>
+    </ol>
+
+    <p><strong>Step 5.</strong> Setup the Project Files</p>
+    <p>We've pre-written some code for you to make the short time we have
+    in the workshop go easier.</p>
+
+    <ol>
+        <li><a href="#">Download the Project</a></li>
+        <li>Unpack the zip folder on your desktop</li>
+    </ol>
+
+
+    <hr />
+    <h3 id="ubuntu">Setup for Ubuntu</a></h3>
+    <p><strong>Step 1.</strong> Install Python</p>
+    <p>GREAT NEWS! Since you're on Ubuntu, Python has already been installed
+    for you. Most Unix/Linux systems come with Python already on it!</p>
+    <p>To verify, open a terminal (see Step 2) and type python at the prompt.
+    you should see something very similar to the code below:</p>
+    <pre>
+        $ python
+        Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
+        [GCC 4.6.3] on linux2
+        Type "help", "copyright", "credits" or "license" for more information.
+        &gt;&gt;&gt;</pre>
+
+    <p><strong>Step 2.</strong> Install a Terminal</p>
+    <p>MORE GOOD NEWS! Again, Ubuntu already comes with a built in Terminal
+    that's ready to use. Since we'll be using this often, you'll want to
+    create a launcher on your desktop or in the side dock.</p>
+
+    <p>If you're using Unity:</p>
+    <ol>
+        <li>Open the Dash</li>
+        <li>Type Terminal and hit <code>Return</code></li>
+        <li>Keyboard Shortcut: <code>CTRL + ALT + T</code></li>
+    </ol>
+
+    <p>If you're using the old style menu:</p>
+    <ol>
+        <li>Go to Applications → Accessories → Terminal</li>
+        <li>Keyboard Shortcut: <code>CTRL + ALT + T</code></li>
+    </ol>
+
+    <p>Create a Launcher:</p>
+    <ol>
+        <li>Right-click any unused space in any panel</li>
+        <li>Choose Add to Panel...</li>
+        <li>Fill in Name (Terminal)</li>
+        <li>Use Browse to select the Terminal</li>
+        <li>Click OK</li>
+    </ol>
+
+    <p><strong>Step 3.</strong> Install Django</p>
+    <p>Now the fun begins!</p>
+
+    <ol>
+        <li>Download <a href="https://www.djangoproject.com/download/">the latest release of Django</a></li>
+        <li>Open a Terminal (see Step 2)</li>
+        <li>Type: <code>cd ~/Downloads/</code></li>
+        <li>Type: <code>tar -xzvf Django-1.5.1.tar.gz</code> -- it should unpack to a folder</li>
+        <li>Type: <code>cd Django.1.5.1</code></li>
+        <li>Type: <code>sudo python setup.py install</code></li>
+        <li>You'll probably have to type the password to your computer now.</li>
+        <li>You should see a bunch of stuff start scrolling down the screen</li>
+        <li>Check to see if it worked:</li>
+        <ol>
+            <li>In the terminal type <code>python</code></li>
+            <li>You should see the <code>&gt;&gt;&gt;</code> prompt.</li>
+            <li>Type: <code>import django</code></li>
+            <li><em>Nothing should happen</em> If you get an error, tell an instructor.</li>
+            <li>Type: <code>exit()</code></li>
+        </ol>
+        <li>Done!</li>
+    </ol>
+
+    <p><strong>Step 4.</strong> Install Sublime Text</p>
+    <p>Most people are surprised to find out that all you need to code is
+    a simple text editor- nothing fancy. In fact, you want the simplest 
+    possible editor you can find! Although there are many Integrated Development
+    Environments (IDEs) out there, we'll use Sublime Text:</p>
+
+    <ol>
+        <li><a href="http://www.sublimetext.com/2">Download Sublime Text and install it</a></li>
+    </ol>
+
+    <p><strong>Step 5.</strong> Setup the Project Files</p>
+    <p>We've pre-written some code for you to make the short time we have
+    in the workshop go easier.</p>
+
+    <ol>
+        <li><a href="#">Download the Project</a></li>
+        <li>Unpack the zip folder on your desktop</li>
+    </ol>
+{% endblock %}
