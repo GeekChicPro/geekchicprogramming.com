@@ -1,1 +1,249 @@
 {% extends 'workshop.html' %}
+
+{% block content %}
+    <p class="muted">Time to Success: 20-25 minutes</p> 
+    
+    <p>You probably thought you knew your computer pretty well, after all,
+    you open it every day to work and play on it. However, the computer that
+    you probably know, is well, a gussied up fancy Word and Hulu machine. 
+    We humans love metaphor, and what is the Desktop on your computer if not
+    a series of symbolism that allows us to view our machines as extensions
+    of our work lives? How about the Browser? It is a window into the Internet.
+    Even the term Windows is used metaphorically in computing environments!</p>
+
+    <p>There is, however, a lower level than the iconographic metaphors that
+    we're used to. A lower, <em>much more powerful</em> level that uses textual
+    commands to <em>precisely</em> control and modify your computers behavior.
+    You've probably seen it in movies -- it's the Command Line Interface.</p>
+
+    <p class="text-error">With great power comes great responsibility, however.
+    Keep in mind that when using the Command Line, whatever you ask your computer
+    to do, the computer will promptly and without question (most of the time)
+    perform that task, even if that task is binary 
+    <a href="http://en.wikipedia.org/wiki/Seppuku">seppuku</a>.</p>
+
+    <p>It is natural, therefore, that we as aspiring programmers, will find 
+    ourselves having to familiarize oursleves with that environment. After all,
+    programming languages can also be understood to be precise textual commands
+    that will give you unlimitted freedom in instructing the computer how to
+    operate. And more practically, you'll have to be at least marginally comfortable
+    typing in commands for the rest of the workshop!</p>
+
+    <ul>
+        <li><a href="#syntax">Command Syntax</a></li>
+        <li><a href="#basics">Some Commands to Memorize</a></li>
+        <li><a href="#directories">Computer Organization</a></li>
+        <li><a href="#moving">Navigating the Filesystem</a></li>
+        <li><a href="#tricks">Pro Tips</a></li>
+        <li><a href="#warnings">Final Warnings</a></li>
+    </ul>
+
+    <p class="text-success">Before we start, you'll want to open a Terminal. You should 
+    have put a shortcut icon to the terminal in your operating system in the 
+    <a href="{% url 'module' module='one' doctype='workshop' %}">first workshop</a>.</p>
+
+    <hr />
+    <h3 id="syntax">Command Syntax</h3>
+    <p>First things first, we have to talk about how to talk to the computer with text.</p>
+
+    <h4>The Prompt</h4>
+    <p>When you come to the terminal, you'll be presented with something that looks
+    a little like this:</p>
+
+    <pre>localhost:~ username$</pre>
+
+    <p>This is called the <em>prompt</em>, and while the details will vary across systems 
+    and Terminals, it is communicating some key elements to you, and also prompting you to
+    type in a command. For example, in this case, the <code>localhost</code> tells you the
+    name of the computer that you are controlling (it is possible to command remote computers
+    through the command line), the <code>~</code> indicates the directory you're in, in this
+    case <code>~</code> is short for "home directory", and the <code>username</code> is the
+    name of the logged in user.</p>
+
+    <p>There are other kinds of prompts. One other one is the prompt for the Python REPL
+    interpreter:</p>
+
+    <pre>&gt;&gt;&gt;</pre>
+
+    <p>A prompt of this type signals you that you should type in Python commands instead of
+    the shell commands that we'll be learning in this workshop.</p>
+
+    <p><strong>Try it!</strong> Type in the following commands:</p>
+
+    <pre>$ python</pre>
+    <pre>&gt;&gt;&gt; print "Hello World!"</pre>
+    <pre>&gt;&gt;&gt; exit()</pre>
+    <pre>$ exit</pre>
+
+    <p>However, we'll get to Python later. At the moment, we need to familiarize ourselves
+    with the shell -- the environment used to control the computer.</p>
+
+    <h4>Anatomy of a Command</h4>
+    
+    <p>Here is an example command (go ahead and try it!)</p>
+
+    <pre>$ ls -la ~/Desktop</pre>
+
+    <p>This command has several parts:</p>
+
+    <ul>
+        <li><code>$</code> The prompt, an indication that you're in the correct place. When
+        we discuss commands I will include the prompt, but you don't have to type it.</li>
+        <li><code>ls</code> This is the command, also called a <strong>Utility</strong>. 
+        These are programs that are stored on your computer that when executed will perform
+        various tasks based on the input (flags and arguments) and output the results in
+        text to you.</li>
+        <li><code>-la</code> Are flags, two flags in particular, the <code>-l</code> flag 
+        and the <code>-a</code> flag. Flags are options or preferences to the command, more
+        on this later.</li>
+        <li><code>~/Desktop</code> This is an argument to the Utility. Arguments are used
+        to specify ordered information that the command needs to function. You can think of
+        them as input. Arguments are usually placed at the end of the command, and there can
+        be any number of space separated arguments from none to many.</li>
+    </ul>
+
+    <p><strong>A note on flags:</strong> flags come in two flavors: single letter flags as
+    in <code>-l</code> or whole word flags such as <code>--version</code>. In the single
+    letter version you can chain lots of flags together after the dash, however in the whole
+    word flag, you have to space seperate the flags. Note that <code>-la</code> is the same
+    as <code>-l -a</code> generally speaking.</p>
+
+    <p>In this particular case, the <code>ls</code> utility lists the contents of a directory
+    and the <code>-l</code> flag asks for more information, while the <code>-a</code> asks to
+    see all files, even hidden ones. the <code>~/Desktop</code> specifies what directory to
+    show the listing of.</p> 
+
+    <p class="well">Try to run the <code>ls</code> utility without the <code>-l</code> or <code>-a</code>
+    flags.</p>
+    <p class="well">Run the command without the <code>~/Desktop</code> argument.</p>
+
+    <hr />
+    <h3 id="basics">Some Commands to Memorize</h3>
+    <p>Here are a list of the basic utilities on Linux/Unix Terminals that you will use on
+    a regular basis. They are worth comitting to memory! Anything with all capital letters
+    that starts with a dollar sign, like $ARG is an argument to give to the command. Replace
+    $ARG with the value you'd like to pass it.</p>
+
+    <dl>
+        <dt><code>man $COMMAND</code></dt>
+            <dd><strong>Man</strong>ual. Get information on how to use the command! Press up and down to
+            scroll through the manual, press <code>Q</code> to quit and go back to the prompt.</dd>
+        <dt><code>ls $DIR</code></dt>
+            <dd>List the contents of the directory <code>$DIR</code>. If no argument is specified
+            will list the contents of the current working directory.</dd>
+        <dt><code>touch $FILE</code></dt>
+            <dd>Creates a file at the specified $FILE path or modifies an existing file's
+            meta data concerning it's modified and accessed time.</dd>
+        <dt><code>mkdir $DIR</code></dt>
+            <dd>Creates a directory in the current working directory.</dd>
+        <dt><code>rmdir $DIR</code></dt>
+            <dd>Removes an empty directory.</dd>
+        <dt><code>cd $DIR</code></dt>
+            <dd>Change directory. Changes the current working directory to the <code>$DIR</code> directory 
+            argument. Basically allows you to move around the computer.</dd>
+        <dt><code>pwd</code></dt>
+            <dd>Print Working Directory. Lets you know where you are on the computer.</dd>
+        <dt><code>less $FILE</code></dt>
+            <dd>Displays the contents of a file. Use the up and down arrows to scroll. Press
+            <code>Q</code> to go back to the prompt.</dd>
+        <dt><code>cp $FILE $DESTINATION</code></dt>
+            <dd>Copy. Copies the file to the destination.</dd>
+        <dt><code>mv $FILE $DESTINATION</code></dt>
+            <dd>Move. Moves the file to the destination.</dd>
+        <dt><code>rm $FILE</code></dt>
+            <dd>Remove. Deletes a file <strong>permanently</strong> - there is <em>NO</em> way
+            to get it back. <span class="text-error">Be careful when using this!</span></dd>
+        <dt><code>sudo $CMD</code></dt>
+            <dd>Super User Do. Append <code>sudo</code> before a command and it will prompt
+            you for your password. When entered, this tells the computer that it should execute
+            the command as though it were the super administrator, and will allow you to
+            do anything. <span class="text-error">Be careful when using this!</span></dd>
+    </dl>
+
+    <p><strong>Try it out!</strong> Execute the following commands (in order):</p>
+
+    <pre>$ man ls</pre>
+    <pre>$ touch testfile.txt</pre>
+    <pre>$ ls -l</pre>
+    <pre>$ cp testfile.txt testfile2.txt</pre>
+    <pre>$ ls -l</pre>
+    <pre>$ mv testfile.txt testfile3.txt</pre>
+    <pre>$ ls -l</pre>
+    <pre>$ rm testfile3.txt</pre>
+    <pre>$ ls -l</pre>
+    <pre>$ pwd</pre>
+    <pre>$ mkdir testdir</pre>
+    <pre>$ cd testdir</pre>
+    <pre>$ pwd</pre>
+    <pre>$ ls -l</pre>
+    <pre>$ cd ..</pre>
+    <pre>$ pwd</pre>
+    <pre>$rm testfile2.txt</pre>
+
+    <hr />
+    <h3 id="directories">Computer Organization</h3>
+
+    <p>Computers are organized according to a hierarchical directory file structure. Every
+    computer has a <em>root</em> directory that contains every other folder and directory.
+    In Linux this is simply called <code>/</code>, whereas in Windows it's usally called
+    <code>C:\</code> but keep in mind, with Cygwin, we'll be only talking about the Unix 
+    and Linux paradigm.</p>
+
+    <p>Because of this structure, every file and directory has an associated <em>absolute path</em> -
+    that is how to find it from the root directory. As you go down from the root directory,
+    the path gets longer, as you go up towards the root directory, it gets shorter.
+    You should recognize this from using Finder or Explorer to navigate your computer's 
+    directory structure.</p>
+
+    <p>Additionally there is the notion of the <em>relative path</em> - that is, the path
+    to a file or directory from where you currently are in the file system. Again, this is
+    like double clicking a folder in Finder or Explorer -- you're in a particular directory
+    and you can go up to it's parent folder or down into child folders.</p>
+
+    <p class="well text-info"><em>absolute paths</em> always start with <code>/</code> 
+    <em>relative paths</em> never start with <code>/</code></p>
+
+    <p>Additionally there are two special symbols: <code>.</code> and <code>..</code> that
+    represent your current working directory and your parent directory respectively. These
+    are often used in relative paths to more clearly specify direction.</p> 
+
+    <p><strong>Try it out!</strong> Type in the following:</p>
+
+    <pre>$ cd ~</pre>
+    <pre>$ pwd</pre>
+    <pre>$ ls $PWD/Documents/</pre>
+    <p>$PWD is the output of the <code>pwd</code> command</p>
+    <pre>$ ls ./Documents/</pre>
+
+    <hr />
+    <h3 id="moving">Navigating the Filesystem</h3>
+    <p>You're already pretty well equipped to navigate the filesystem -- go ahead and take
+    a look around! Use the <code>cd</code> command to change directories, and use the
+    <code>pwd</code> command if you get lost.</p>
+
+    <p class="well">Use <code>cd ..</code> to go up a parent directory.</p>
+    <p class="well">Use <code>cd ~</code> as a shortcut to get back to your home directory.</p>
+
+    <p>Remember to use relative and absolute paths as you work your way around.</p>
+
+    <hr />
+    <h3 id="tricks">Pro Tips</h3>
+
+    <p>Here are some shortcuts to make your life on the command line a bit easier (less typing!)</p>
+
+    <p><strong>Tab Autocomplete:</strong> When typing out a path or a command, you can quickly 
+    finish the rest by pressing the <code>tab</code> key after you type two or three letters. If
+    more than one possibility exists, nothing will happen, but if you hit <code>tab</code> twice,
+    it will display all the posibilities. This will make you much, much faster!</p>
+
+    <p><strong>Previous Commands:</strong> Instead of retyping an entire command that you made
+    a type on, hit the up and down arrows to go through your command history!</p>
+
+    <hr />
+    <h3 id="warnings">Final Warnings</h3>
+
+    <p class="text-warning">Again, when interacting with the computer via the command line,
+    you will have an incredible amount of power to ruin your computer and never get your data 
+    back. <strong>If you're unsure, don't issue a command!</strong>.</p>
+
+{% endblock %}

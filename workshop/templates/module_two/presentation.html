@@ -1,1 +1,136 @@
 {% extends 'presentation.html' %}
+{% load staticfiles %}
+
+{% block slides %}
+    
+    <section>
+        <h2>From Metaphor to Function</h2>
+        <a class="image" href="{% static 'img/graphical-user-interface.png' %}"><img src="{% static 'img/graphical-user-interface.png' %}" /></a>
+        <a class="image" href="{% static 'img/command-line-interface.png' %}"><img src="{% static 'img/command-line-interface.png' %}" /></a>
+    </section>
+
+    <section>
+        <h2>Warning</h2>
+        <p class="text-warning">With great power comes great responsibility, however. Keep in mind that when using the Command Line, whatever you ask your computer to do, the computer will promptly and without question (most of the time) perform that task, even if that task is binary seppuku.</p>
+        <a class="image" href="http://3.bp.blogspot.com/_bppu8Es-JsE/S8hQ4vFaFcI/AAAAAAAAApg/Y4OOQug_lpw/s320/dead-computer.jpg"><img src="http://3.bp.blogspot.com/_bppu8Es-JsE/S8hQ4vFaFcI/AAAAAAAAApg/Y4OOQug_lpw/s320/dead-computer.jpg" /></a>
+    </section>
+
+    <section>
+        
+        <section>
+            <h2>Command Syntax</h2>
+            <a class="image" href="http://f0.bcbits.com/z/90/57/905781423-1.jpg"><img style="max-width:256px;" src="http://f0.bcbits.com/z/90/57/905781423-1.jpg"></a>
+        </section>
+
+        <section>
+            <h2>The Prompt</h2>
+            <pre>
+            
+ localhost:~ username$
+            </pre>
+            <p><small>From here on out, we'll just represent the prompt with a $</small></p>
+        </section>
+
+        <section>
+            <h2>Anatomy of a Command</h2>
+            <pre>
+            
+ $ cp -R ~/Pictures/ ~/Backup/Pictures/
+            </pre>
+            <ul>
+                <li class="fragment" data-fragment-index="0">Utility</li>
+                <li class="fragment" data-fragment-index="1">Flags</li>
+                <li class="fragment" data-fragment-index="2">Arguments</li>             
+            </ul>
+        </section>
+
+    </section>
+
+    <section>
+        <section>
+            <h2>Computer File Organization</h2>
+            <a class="image" href="http://www.jboss.org/jdf/examples/ticket-monster/tutorial//gfx/ui-file-structure.png"><img src="http://www.jboss.org/jdf/examples/ticket-monster/tutorial//gfx/ui-file-structure.png" /></a>
+        </section>
+
+        <section>
+            <h2>Navigating the File System</h2>
+            <pre>
+
+ $ pwd
+            </pre>
+            <pre>
+
+ $ cd
+            </pre>
+            <pre>
+
+ $ ls
+            </pre>
+            <p><small>Just like in Finder or Explorer, you're always "somewhere".</small></p>
+        </section>
+        
+        <section>
+            <h2>Paths</h2>
+            <p><em>absolute paths</em></p>
+            <pre>
+            
+ /Users/example/Documents/Personal/loveletter.txt
+            </pre>
+            <p><em>relative paths</em></p>
+            <pre>
+            
+ Documents/Personal/dearjohn.txt
+            </pre>
+            <p>Symbols</p>
+            <p><code>.</code></p>
+            <p><code>..</code></p>
+        </section>
+    </section>
+    
+    <section>
+        <section>
+            <h2>Commands to Remember</h2>
+            <ul>
+                <li class="fragment" data-fragment-index="0"><code>man $COMMAND</code> manual</li>
+                <li class="fragment" data-fragment-index="1"><code>ls $DIR</code> list directory</li>
+                <li class="fragment" data-fragment-index="2"><code>touch $FILE</code> affect a file</li>
+                <li class="fragment" data-fragment-index="3"><code>mkdir $PATH</code> make a directory</li>
+                <li class="fragment" data-fragment-index="4"><code>rmdir $PATH</code> remove a directory</li>
+                <li class="fragment" data-fragment-index="5"><code>cd $PATH</code> change directory</li>
+                <li class="fragment" data-fragment-index="6"><code>pwd</code> print working directory</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>More Commands to Remember</h2>
+            <ul>
+                <li class="fragment" data-fragment-index="0"><code>less $FILE</code> display contents of file</li>
+                <li class="fragment" data-fragment-index="1"><code>cp $SRC $DEST</code> copy a file somewhere</li>
+                <li class="fragment" data-fragment-index="2"><code>mv $SRC $DEST</code> move/rename a file</li>
+                <li class="fragment" data-fragment-index="3"><code>rm $FILE</code> permanently delete a file</li>
+                <li class="fragment" data-fragment-index="4"><code>sudo $CMD</code> super user do</li>
+            </ul>
+        </section>
+    </section>
+
+    <section>
+        <h2>Pro Tips</h2>
+        <ul>
+            <li class="fragment" data-fragment-index="0">Tab Autocomplete</li>
+            <li class="fragment" data-fragment-index="1">Command History</li>
+            <li class="fragment" data-fragment-index="2">Tilde (~)</li>
+            <li class="fragment" data-fragment-index="3">Bang (!)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Warning again</h2>
+        <p class="text-error">Again, when interacting with the computer via the command line, you will have an incredible amount of power to ruin your computer and never get your data back. <strong>If you're unsure, don't issue a command!.</strong></p>
+    </section>
+
+    <section>
+        <h2>Terminal Time!</h2>
+        <p><a href="{% url 'module' module=module doctype='workshop' %}">{{ workshop }}</a></p>
+    </section>
+
+{% endblock %}
