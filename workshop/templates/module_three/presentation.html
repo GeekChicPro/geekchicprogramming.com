@@ -1,1 +1,289 @@
 {% extends 'presentation.html' %}
+{% load staticfiles %}
+
+{% block slides %}
+    
+    <section>
+        <section>
+            <h2>What is Programming?</h2>
+            <a class="image" href="{% static 'img/recipe.jpg' %}"><img src="{% static 'img/recipe.jpg' %}" /></a>
+            <p>Basically a Recipe: a set of ingredients and instructions.</p>
+        </section>
+        
+        <section>
+            <p>Instead of food, we cook with numbers and strings.</p>
+            <p>And the instructions are defined as a language (Python)</p>
+            <pre>
+ 
+ # The area of a triangle
+
+ # Ingredients
+ base   = 3
+ height = 4
+
+ # Instructions
+ area = 0.5 * base * height
+ print area
+            </pre>
+            <p>The instructions are followed from top to bottom</p>
+            <p>And when you're out of instructions- you're done!</p>
+        </section>
+
+        <section>
+            <p>Let's break it down:</p>
+            <pre>
+ 
+ # The area of a triangle
+
+ # Ingredients
+ base   = 3
+ height = 4
+
+ # Instructions
+ area = 0.5 * base * height
+ print area
+            </pre>
+            <ul>
+                <li class="fragment" data-fragment-index="0">Comments</li>
+                <li class="fragment" data-fragment-index="1">Assignment</li>
+                <li class="fragment" data-fragment-index="2">Variables</li>
+                <li class="fragment" data-fragment-index="3">Multiplication</li>
+                <li class="fragment" data-fragment-index="4">Output</li>
+            </ul>
+        </section>
+
+    </section>
+
+    <section>
+        <h2>Interactivity</h2>
+        <p>Variables are meant to be... variable</p>
+        <pre>
+ 
+ # The area of a cirlce
+
+ radius = input("Enter radius: ")
+
+ area = 3.14 * radius * radius
+ print area
+        </pre>
+        <p class="fragment" data-fragment-index="0"><code>input()</code> is a function, and is one of many ways to get input.</p>
+        <p class="fragment" data-fragment-index="1">Something new- a string!</p>
+
+
+    </section>
+
+    <section>
+        <h3>Working with Numbers</h3>
+        <pre>
+
+ a + b      # addition
+ a - b      # subtraction
+ a * b      # multiplication
+ a / b      # depends - either integer or real division
+ a % b      # modulus 
+        </pre>
+        <h3>Working with Strings</h3>
+        <pre>
+
+ "a" + "b"  # concatentation
+        </pre>
+    </section>
+
+    <section>
+        
+        <section>
+            <h2>Conditions</h2>
+            <pre>
+
+ temperature = input("What is today's temperature?")
+ temperature = int(temperature)
+
+ if temperature &gt; 85:
+     print "It's too hot, %i degrees will melt you." % temperature
+ elif temperature &lt; 45:
+    print "Are you crazy? You'll freeze at %i degrees" % temperature
+ else:
+     print "Perfect weather! Let's go for a picnic!"
+            </pre>
+            <p>Conditional Execution controls the <em>Flow</em> of a program.</p>
+        </section>
+
+        <section>
+            <h2>Comparisons</h2>
+            <pre>
+
+ a &gt; b       # True if a is greater than b
+ a &gt;= b      # True if a is greater than or equal to b
+ a == b      # True if a is equal to b* 
+ a &lt; b       # True if a is less than b
+ a &lt;= b      # True if a is less than or equal to b
+            </pre>
+            <p><small>*note, == not the same as = which is assignment</small></p>
+        </section>
+
+        <section>
+            <h2>True vs. False</h2>
+        </section>
+
+    </section>
+
+    <section>
+        <section>
+            <h2>Repeated Execution</h2>
+            <a href="http://inkspirationalmessages.com/wp-content/uploads/2012/01/dont-stop-believing-2.jpg" class="image"><img src="http://inkspirationalmessages.com/wp-content/uploads/2012/01/dont-stop-believing-2.jpg" /></a>
+        </section>
+
+        <section>
+            <h2><code>for ... in ...</code></h2>
+            <pre>
+
+ for letter in "a", "b", "c", "d", "e":
+     print letter
+
+ for number in range(1, 10):
+     if number % 2 == 0:
+         print "number " + number + " is even"
+            </pre>
+            <p><code>range</code> is another function - don't worry, there soon!</p>
+        </section>
+
+        <section>
+            <h2><code>while</code></h2>
+            <pre>
+
+ # An import statement
+ from time import sleep
+
+ print "Cooking the spam."
+
+ hot_enough  = 180
+ temperature = 62
+
+ while temperature &lt; hot_enough:
+     print "Not hot enough..."
+     sleep(5)
+     temperature = temperature + 5
+
+            </pre>
+        </section>
+    </section>
+
+    <section>
+        <section>
+            <p>Find the difference between 8! and 4!</p>
+            <p><small>Note: 3! is 3 * 2 * 1</small></p>
+            <pre>
+ 
+ num    = 8
+ result = 1
+ while num > 0:
+     result = result * num
+     num = num - 1
+ 
+ num    = 8
+ result2 = 1
+ while num > 0:
+     result2 = result * num
+     num = num - 1
+
+ print "8! - 4! is " + (result - result2)
+            </pre>
+        </section>
+
+        <section>
+            <h2>Functions</h2>
+            <p>Reusable chunks of code that can be "called" with input</p>
+            <pre>
+ 
+ def fact(num):
+    result = 1
+    while num > 0:
+        result = result * num
+        num = num -1
+    return result
+
+ print "8! - 4! is " + (fact(8) - fact(4))
+            </pre>
+            
+            <p class="fragment" data-fragment-index="0"><code>num</code> is an argument to the function.</p>
+            <p class="fragment" data-fragment-index="1">proceedure vs. function</p>
+        </section>
+
+        <section>
+            <h2>Arguments</h2>
+            <pre>
+ 
+
+ def writer(name, color="blue"):
+    print name + "'s favorite color is " + color
+ 
+ writer('Samantha')
+ writer('Sarah', 'red')
+ writer('Susan', color='green')
+            </pre>
+            <p class="fragment" data-fragment-index="0">Positional vs Keyword Arguments</p>
+            <p class="fragment" data-fragment-index="1">Defaults and Order</p>
+        </section>
+    </section>
+
+    <section>
+        <section>
+            <h2>Data Structures</h2>
+            <p class="fragment" data-fragment-index="0">Programmers can't live on numbers and strings alone.</p>
+            <p class="fragment" data-fragment-index="1">The currency of programming is data.</p>
+            <p class="fragment" data-fragment-index="2">We need more significant things to represent our data.</p>
+            <a class="image" href="http://www.dullneon.com/randomnotes/images-videos-and-other-content/2010/12/xkcd-treeheapjoke.jpg"><img style="max-height: 256px;" src="http://www.dullneon.com/randomnotes/images-videos-and-other-content/2010/12/xkcd-treeheapjoke.jpg" /></a>
+        </section>
+
+        <section>
+            <h2>Lists</h2>
+            <pre>
+
+ # A new list
+ groceries = []
+
+ # Add to list
+ groceries.append("Apples")
+ groceries.append("Oranges")
+ groceries.append("Cactus")
+
+ # Access by index
+ print groceries[2]
+
+ # Find number of things in list
+ print len(groceries)
+
+ # Remove from list
+ groceries.remove("Oranges")
+ print groceries
+            </pre>
+        </section>
+
+        <section>
+            <h2>Dictionaries</h2>
+            <pre>
+
+ # A dictionary of days in months
+ months = {
+    'January': 31,
+    'February': 28,
+    'March': 30,
+    ...
+ }
+
+ # Access by key
+ print months['March']
+
+ # Add new item
+ months['December'] = 31
+            </pre>
+        </section>
+    </section>
+
+    <section>
+        <h2>The Best way to learn is by doing:</h2>
+        <p><a href="{% url 'module' module=module doctype='workshop' %}">{{ workshop }}</a></p>
+    </section>
+
+
+{% endblock %}

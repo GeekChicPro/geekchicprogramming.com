@@ -1,1 +1,132 @@
 {% extends 'workshop.html' %}
+
+{% block content %}
+    <p class="muted">Time to Success: 50-65 minutes</p> 
+    
+    <p>Ok, so fair warning; although this workshop is entitled <em>Move over, Trinity</em>
+    I do not expect you to become a lightning fast hacker with this workshop. Basically,
+    I'm hoping we can arm you with the tools to complete the exercises in the rest of the
+    workshop, and not give an overly long view of Computer Science and Programming in
+    general.</p>
+
+    <p class="text-warning">We're here to give you enough knowledge to make you dangerous.</p>
+    <p class="text-success">We're here to teach you to learn to learn how to code.</p>
+
+    <p>So we're going to take a different tack in this module, and instead of the more
+    complete and verbose explanations, we're going to give you a task, then we'll give
+    you the discussion after you've attempted it. Good luck!</p>
+
+    <ul>
+        <li><a href="#helloworld">Hello, World</a></li>
+        <li><a href="#countdown">Countdown</a></li>
+        <li><a href="#contacts">An Birthday Book</a></li>
+        <li><a href="#learnmore">Further Material</a></li>
+    </ul>
+
+    <p>Keep in mind that you're going to need a text editor for this, as well as an
+    open Terminal window in the working directory for where you're going to write these
+    programs!</p>
+
+    <hr />
+    <h3 id="helloworld">Hello, World</h3>
+
+    <p class="well">Write a program that prints out a greeting to the command line.</p>
+
+    <h4>Executing a Python Program</h4>
+    <p>In order to execute a python program, you'll have open a terminal window and
+    navigate to the directory containing your python program that you wrote in a text
+    editor. If that program is named "hello.py" then use the following command:</p>
+
+    <pre>
+
+ $ python hello.py
+    </pre>
+
+    <h4>A Convention</h4>
+    <p>A convention that python programmers use for programs that execute from the
+    command line like we're doing is to put all their execution code in blocks like
+    the following:</p>
+
+    <pre>
+
+ if __name__ == "__main__":
+     print "Good Program!"
+    </pre>
+
+    <p>Don't worry if you don't get it-- but it is very good to do! You'll probably
+    thank me later!</p>
+
+    <hr />
+    <h3 id="countdown">Countdown</h3>
+
+    <p class="well">Write a program that prints all digits from 10 to 4</p>
+
+    <h4>Storing State</h4>
+    <p>One good thing to consider is rather than writing 6 lines of code for each
+    print statement, is to do a little bit of math. You'll need a variable to 
+    store the number you're currently on, then update it using subtraction after
+    you print the number out.</p>
+
+    <h4>Keep Going!</h4>
+    <p>You can't subtract only once in this case, you'll have to keep doing it
+    until a condition is met. What will keep the program subtracting? You're 
+    probably going to have to use a <code>for</code> loop or a <code>while</code>
+    loop to keep the subtraction going.</p>
+
+    <h4>Knowing when to Stop</h4>
+    <p>You'll have to test to make sure when to stop, otherwise you're program
+    will just keep going forever! In this case, you need to ensure that your variable
+    holding the current number (or state) is tested to make sure it's not less than
+    four. If it is, then you're done!</p>
+
+    <h4>Alternatives</h4>
+    <p>There are many ways to write this program, here are a few:</p>
+    <ul>
+        <li>Iterate through a list that holds the numbers 10 to 4</li>
+        <li>Create a while-loop that keeps subtracting until it's less than 4</li>
+        <li>Make a function that simply prints one less, and is called only if the number &gt; 4</li>
+    </ul>
+    <p>There are usually many ways to solve programming problems, how did you solve this one?</p>
+
+    <hr />
+    <h3 id="contacts">A Birthday Book</h3>
+    
+    <div class="well">
+        <p>Write a program that creates a list of contacts with their name and birthday</p>
+        <ul>
+            <li>Create a function that adds contacts to the list.</li>
+            <li>Add a few names and birthdays to your list.</li>
+            <li>Create another function that prints out the names and birthdays.</li>
+            <li>Better yet: store contacts by Birthday month, print by month.</li>
+            <li>Bonus: create a function that figures out the youngest person.</li>
+        </ul>
+    </div>
+
+    <h4>Data Storage</h4>
+    <p>You're going to need a place to keep all of your data, and for the time being,
+    the best way to keep it is in a list or a dictionary at the top of your program. 
+    All your functions will be able to access that list by name.</p>
+
+    <h4>Function Parameters</h4>
+    <p>In this case, your function needs to take in two parameters, name and birthday.
+    Interestingly, you'll have to decide how you'd like to store the Birthday; should you
+    pass the day, month, year as seperate things? Are they numbers or strings? The 
+    arguments to the function can be parameters or keyword arguments.</p>
+
+    <h4>Nested Data Structure</h4>
+    <p>You can always create seperate data structures for each month to store the
+    birthdays by month. However, a nested data structure, e.g. a list of lists or a
+    dictionary of lists, could help keep things more compact.</p>
+
+    <h4>External Modules</h4>
+    <p>One possible solution to the finding the youngest person is to use the built in
+    datetime module that is in Python. Datetime allows you to do math on dates and has
+    a particularly good and efficient data store for dates and times. Ask your instructor
+    if you're interested. However-- there are other ways, don't be afraid to try!</p>
+
+    <hr />
+    <h3 id="learnmore">Further Learning</h3>
+    <p>I highly recommend <a href="http://learnpythonthehardway.org/book/">Learning Python the Hard Way</a>
+    by Zed A. Shaw. Don't worry, it's not as hard as it sounds!</p>
+
+{% endblock %}
