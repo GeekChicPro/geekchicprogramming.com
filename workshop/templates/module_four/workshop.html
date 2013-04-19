@@ -1,1 +1,193 @@
 {% extends 'workshop.html' %}
+
+{% block content %}
+
+    <p class="muted">Time to Success: 45-60 minutes</p>
+
+    <p>In this module we're going to teach you how to write again. The first time you
+    learned how to write, you learned about the structure of documents: an introduction,
+    the body, and then a conclusion. Structure is so important to the understanding of
+    documents that we create specialized headings and sections to better break down a
+    large piece of content for the consumption of our human audience. Generally speaking,
+    the way that we <em>format</em> those typographic elements gives visual cues to our
+    readers about how best to approach these sections, for example a short statement that
+    is big and bold is probably a chapter heading.</p>
+
+    <p>Unfortunately, computers do not understand visual formating clues to interpret 
+    documents, and it is just as important for computers to understand human documents
+    as it is for humans to do so- so that they can render them in a way we can understand.
+    In order for a computer to understand the structure of a document, we use something 
+    called a <em>markup language</em>, and in particular we will be dealing with HTML5
+    in this workshop.</p>
+
+    <p>So today's task will be to get you to seperate <em>structure</em> from <em>format</em>
+    in a document, and along the way, we'll create an HTML profile page for you.</p>
+
+    <p class="well">Create an HTML5 Profile page</p>
+
+    <ul>
+        <li><a href="#basicmarkup">A Basic Web Document</a></li>
+        <li><a href="#addingcontent">Adding Content</a></li>
+        <li><a href="#gravatar">A Profile Picture</a></li>
+        <li><a href="#bootstrap">Styling it up with CSS (and Bootstrap)</a></li>
+        <li><a href="#javascript">A note on Interactivity</a></li>
+        <li><a href="#resources">More Resources</a></li>
+    </ul>
+
+    <p>Keep in mind that you're going to need a text editor for this workshop, as well
+    as a Web Browser - particularly Chrome or Firefox would be great!</p>
+
+    <hr />
+    <h3 id="basicmarkup">A Basic Web Document</h3>
+    
+    <p>All HTML5 web pages are required to have the following elements:</p>
+
+    <ul>
+        <li>A doctype, for HTML5 this is: <code>&lt;!DOCTYPE html&gt;</code></li>
+        <li>A single <code>&lt;html&gt;</code> tag -- all other tags will be inside this tag.</li>
+        <li>A single <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> as the two children of the <code>&lt;html&gt;</code> tag</li>
+        <li>A <code>&lt;title&gt;</code> tag inside of the <code>&lt;head&gt;</code> tag.</li>
+    </ul>
+
+    <p>Open up your basic text editor and type in the following:</p>
+    <pre>
+
+ &lt;!DOCTYPE html&gt;
+ &lt;html&gt;
+ &lt;head&gt;
+    &lt;title&gt;My Awesome Profile&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+
+ &lt;/body&gt;
+ &lt;/html&gt;
+    </pre>
+
+    <p>Save the document on your desktop as "profile.html" - note that if you have
+    Windows or an editor that defines the file type, set the type as "All Files" or
+    "HTML".</p>
+
+    <p>Double click the profile.html file on your desktop. It should automatically
+    open a Browser window... with nothing in it. But hey- look! You're title is at
+    the top of the browser tab! If you had trouble opening the file, please let an
+    instructor know. To fix this you can right-click and select "open with" and select
+    a Browser. If it opens in a text editor, it is probably saved as "profile.html.txt"</p>
+
+    <p>Let's fix the emptiness. Inside of the <code>&lt;body&gt;</code> tag, insert the
+    following:</p>
+
+    <pre>
+
+&lt;body&gt;
+    &lt;h1&gt;My Awesome Profile Page!&lt;/h1&gt;
+&lt;/body&gt;
+    </pre>
+
+    <p>Reload the page by pressing CTRL + R or CMD + R or F5 or by simply hitting the
+    refresh button. A big, bold version of "My Awesome Profile Page!" should appear.</p>
+
+    <h4>A few discussion points</h4>
+    <p>As you can see, the basic structure of any HTML page is a head and a body. The
+    head describes the document, including things like its title, and many other useful
+    things as well. The body contains the content of the document. This is starting to
+    seem pretty familiar!</p>
+
+    <p>A few other things you can put in the <code>&lt;head&gt;</code> tag are things
+    called <code>&lt;meta&gt;</code> tags -- these tags describe the document to the
+    computer, including things like encoding, language, authorship, descriptions, and
+    more. These tags are used in particular by search engines to categorize the Internet.</p>
+
+    <p>Add the following in the <code>&lt;head&gt;</code> section of your document:</p>
+
+    <pre>
+ 
+ &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;My Awesome Profile Page!&lt;/title&gt;
+    &lt;meta name="author" content="Me"&gt;
+    &lt;meta name="keywords" content="profile, me, awesome"&gt;
+    &lt;meta name="description" content="All about me!"&gt;
+ &lt;/head&gt;
+    </pre>
+
+    <p>There, now Google can find you! This is so common, that web developers have standardized
+    the template for HTML5 docs, the best one is the 
+    <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> - but this is a bit
+    advanced, so don't bounce over there quite yet!</p>
+
+    <hr />
+    <h3 id="addingcontent">Adding Content</h3>
+
+    <p>Ok, now on to the <code>&lt;body&gt;</code> -- let's get some stuff into our
+    awesome profile!</p>
+
+    <p class="text-success">Note - I'm merely making suggestions here, add as much
+    content as you'd like to, not just what I'm suggesting! See the
+    <a href="http://www.w3schools.com/html/">W3C Tag Reference</a> for a complete
+    tag reference if you need a little inspiration.</p>
+
+    <p>First add some sections:<p>
+
+    <pre>
+
+ &lt;h2&gt;About Me&lt;/h2&gt;
+ &lt;h2&gt;My Favorite Things&lt;/h2&gt;
+ &lt;h3&gt;Music&lt;/h3&gt;
+ &lt;h3&gt;Movies&lt;/h3&gt;
+    </pre>
+
+    <p>You'll notice when you refresh the page that your Browser renders these
+    headings like you'd expect. Both you and the computer are able to detect the 
+    structure of the document with just a little markup!</p>
+
+    <p>Add some <code>&lt;p&gt;</code> tags with a short biography under the About section.</p>
+
+    <p>Let's also add some links to our social media:</p>
+
+    <pre>
+ &lt;p&gt;&lt;strong&gt;Follow me:&lt;/strong&gt;&lt;/p&gt;
+
+ &lt;ul&gt;
+    &lt;li&gt;&lt;a href="http://twitter.com/username"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://facebook.com/username"&gt;Facebook&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://linkedin.com/in/username"&gt;Linked In&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+    </pre>
+
+    <p>List your favorite music and movies in those sections using <code>&lt;ol&gt;</code> tags
+    to create ordered lists.</p>
+    
+    <h4>A bit more discussion</h4>
+    <p>All this markup is read by the Browser and is translated into what you're seeing on
+    the browser page, in fact - different browsers will treat the markup slightly differently.
+    If you have a different Web Browser installed, try opening your document up in that one
+    and seeing the difference! Web designers have to use styles to apply universal formatting
+    to their documents, we'll get into that later.</p>
+
+    <p>Also, since every web page is essentially markup, most browsers will allow you to see
+    the raw tags. In Chrome, for instance, right click on the page and click "Inspect Element"
+    this will bring up a tab with the raw HTML that's underneath. You can inspect ANY webpage
+    this way, but beware, it can be a jungle of markup out there!</p>
+
+    <p class="text-success">Ask your instructor how to view the raw HTML in your browser.</p>
+
+    <hr />
+    <h3 id="gravatar">A Profile Picture</h3>
+
+    <hr />
+    <h3 id="bootstrap">Styling it Up with CSS (and Bootstrap)</h3>
+
+    <hr />
+    <h3 id="javascript">A note on Interactivity</h3>
+
+    <hr />
+    <h3 id="resources">More Resources</h3>
+
+    <ul>
+        <li><a href="http://www.w3schools.com/html/">W3C Tag Reference</a></li>
+        <li><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></li>
+        <li><a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a></li>
+        <li><a href="http://jquery.com/">jQuery</a></li>
+    </ul>
+    
+{% endblock %}

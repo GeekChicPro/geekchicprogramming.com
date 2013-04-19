@@ -20,7 +20,7 @@ MODULES = {
     'four': {
         'name': 'The Web Front and HTML',
         'presentation': 'Marking Stuff Up',
-        'workshop': 'Writing for the Web without Bloggging',
+        'workshop': 'Writing for the Web without Blogging',
         'handout': 'HTML Tags',
     },
     'five': {
