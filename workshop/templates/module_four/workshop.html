@@ -174,16 +174,158 @@
     <hr />
     <h3 id="gravatar">A Profile Picture</h3>
 
+    <p>Images and other resources like stylesheets, scripts, and even sounds and music can be
+    linked to and added as resources in web documents. You can use the file structure to have
+    the browser automatically fetch these images- but we're going to use a resource on the
+    Internet - a <a href="http://gravatar.com">Globally Recognized Avatar (Gravatar)</a> that
+    you can manipulate and upload without worrying about server resources.</p>
+
+    <p>Go to <a href="https://en.gravatar.com/">https://en.gravatar.com/</a> and sign in or
+    create a new account. Select your gravatar or upload a new photo of yourself. Once you
+    have assigned the Gravar to your email- select the "link" button in the My Emails page
+    and copy the link, which should look something like:</p>
+
+    <p class="well">wwww.gravatar.com/avatar/5dad8ad2a5bd5773bc08edeea9b27aa1.png</p>
+
+    <p>Add the gravatar to your profile:</p>
+
+    <pre>
+
+ &lt;img src="http://wwww.gravatar.com/avatar/5dad8ad2a5bd5773bc08edeea9b27aa1.png" alt='Profile' title='Me' /&gt;
+    </pre>
+
+    <p>If you're having trouble with Internet connections, simply move an image into the same
+    working directory as the profile.index file. Then simply add the name of the image without
+    any path information to the src attribute.</p>
+
     <hr />
     <h3 id="bootstrap">Styling it Up with CSS (and Bootstrap)</h3>
 
+    <p>Actual format of web documents is done using CSS (Cascading Style Sheets). Although
+    a full discussion on CSS is beyond the scope of this workshop; here's a bit of a preview.</p>
+
+    <pre>
+ &lt;style type="text/css"&gt;
+     body {
+        background-color: white;
+     }
+
+     p {
+        color: black;
+        font-size: 16px;
+        font-family: serif;
+        line-height: 18px;
+     }
+
+     ul.horizontal li {
+         display: inline;
+     }
+ &lt;/style&gt;
+    </pre>
+
+    <p>Essentially what CSS does is allow you to specify exactly how each of our HTML elements
+    should look by laying out formating properties for each of the elements. Additionally, CSS
+    allows you to specify classes (that's the .horizontal after the <code>&lt;ul&gt;</code> 
+    tag) to specifically style a set of elements. To add a class to your elements, set it in
+    the class attribute:</p>
+
+    <pre>
+
+ &lt;ul class="horizontal"&gt;
+    &lt;li&gt;List Item One&lt;/li&gt;
+    &lt;li&gt;List Item Two&lt;/li&gt;
+ &lt;/ul&gt;
+    </pre>
+
+    <p>The best place to put <code>&lt;style&gt;</code> tags is in the head of your html document.
+    You can also link to them as external documents, or add styles directly to tags with the
+    style attribute. In fact, this is where the term Cascading comes from. Styles are applied in
+    this precedence: styles on the tag, styles in the document, external style documents.</p>
+
+    <h4>Bootstrap</h4>
+    <p>Rather than get you to write CSS, I highly recommend using the 
+    <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> framework to quickly add an
+    elegant, and universal style to your web documents. You may notice that these pages are also
+    in Bootstrap!</p>
+
+    <p>Add the following to your <code>&lt;head&gt;</code> block, after all the metas:</p>
+
+    <pre>
+
+ &lt;link rel="stylesheet" type="txt/css" 
+    href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" /&gt;
+    </pre>
+    
+    <p>When you refresh your page, everything should look different! You can now add Bootstrap
+    markup to your document to more specifically control what is happening. Let's add the following
+    markup to center your document on the page and clean things up a bit:</p>
+
+    <pre>
+
+ &lt;body&gt;
+    
+    &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="span12"&gt;
+
+               [Your content here]
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+ &lt;/body&gt;
+    </pre>
+
+    <p>Feel free to use the excellent documents from <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>
+    to continue to add markup to your page that will format it.</p>
+
     <hr />
     <h3 id="javascript">A note on Interactivity</h3>
+
+    <p>The final piece that is is missing with front end development is some sort of interactivity.
+    Web documents have moved beyond simple information giving things to full blown applications. 
+    Because of this some user interaction with the document is required. To accomplish this, we use
+    JavaScript.</p>
+
+    <p>Again, JavaScript is beyond the scope of this workshop, but if you do intend to become a
+    front end web developer, then that trinity - HTML5, CSS, and JavaScript will be your bread and
+    butter.</p>
+
+    <p>To very quickly and easily develop JavaScript on all Browsers, we use a library called
+    <a href="http://jquery.com">jQuery</a> - a selector engine for your document. To try it out,
+    add the following to your document, in the <code>&lt;head&gt;</code> block after the style
+    sheet link.</p>
+
+    <pre>
+
+ &lt;head&gt;
+    
+    ...
+
+    &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        
+        $(document).ready(function() {
+            $("p").click(function() {
+                $(this).toggleClass('text-success');
+            });
+        });
+
+    &lt;/script&gt;
+
+ &lt;/head&gt;
+    </pre>
+
+    <p>Now go click on some of your paragraphs -- they should turn green when you click them,
+    and then back to black when you click on them again! (This step also assumes you have
+    the Bootstrap stylesheet added to your document).</p>
 
     <hr />
     <h3 id="resources">More Resources</h3>
 
     <ul>
+        <li><a href="http://www.htmldog.com/guides/html/beginner/">HTML Beginner Tutorial<a></li>
         <li><a href="http://www.w3schools.com/html/">W3C Tag Reference</a></li>
         <li><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></li>
         <li><a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a></li>

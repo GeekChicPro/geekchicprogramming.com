@@ -1,1 +1,251 @@
 {% extends 'presentation.html' %}
+{% load staticfiles %}
+
+{% block slides %}
+    
+    <section>
+        <section>
+            <h2>Structure</h2>
+                <p>vs.</p>
+            <h2>Format</h2>
+        </section>
+
+        <section>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+        </section>
+
+        <section>
+            <style>
+                h1.mask, h2.mask, h3.mask, h4.mask {
+                    font-size: 24px;
+                    font-weight: normal;
+                }
+            </style>
+            <h1 class="mask">Heading 1</h1>
+            <h2 class="mask">Heading 2</h2>
+            <h3 class="mask">Heading 3</h3>
+            <h4 class="mask">Heading 4</h4>
+        </section>
+
+        <section>
+            <h1 style="color:navy;">Heading 1</h1>
+            <h2 style="color:red;">Heading 2</h2>
+            <h3 style="font-family:fantasy; font-size: 72px;">Heading 3</h3>
+            <h4 style="font-style: oblique">Heading 4</h4>
+        </section>
+    </section>
+
+    <section>
+        <section>
+            <h2>Markup</h2>
+            <p>Structure that both Humans and Computers can interpret</p>
+            <p>Three key components to Markup:</p>
+            <ul>
+                <li class="fragment" data-fragment-index="0">Tags</li>
+                <li class="fragment" data-fragment-index="1">Attributes</li>
+                <li class="fragment" data-fragment-index="2">Elements</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Tags</h2>
+            <p>Opening and Closing Tags surround values.</p>
+            <pre>
+
+ &lt;tag&gt;element&lt;/tag&gt;
+            </pre>
+            <p>Nesting: Tags can surround other tags.</p>
+            <pre>
+
+ &lt;tag&gt;&lt;inner&gt;element&lt;/inner&gt;&lt;/tag&gt;
+            </pre>
+        </section>
+        <section>
+            <h2>Attributes</h2>
+            <p>Extra information associated with <em>tags</em>. These are key/value pairs
+            that inside the opening tag. The value must be surrounded by quotation marks.</p>
+
+            <pre>
+
+ &lt;tag attribute="value"&gt;element&lt;/tag&gt;
+            </pre>
+        </section>
+
+        <section>
+            <h2>Elements</h2>
+            <p>Tags mark the beginning and end of elements. Elements are your content, 
+            and can either be text or another nested structure of tags.</p>
+            <a href="http://www.fropki.com/uploads/2010/jan/09/Earrings/11.jpg" class="image"><img src="{% static 'img/headearings.jpg' %}" style="max-height:350px" /></a>
+        </section>
+    </section>
+
+    <section>
+        <h2>An HTML Page</h2>
+        <pre>
+
+ &lt;!DOCTYPE html&gt;
+ &lt;html&gt;
+ &lt;head&gt;
+    &lt;title&gt;My Awesome Webpage&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+
+ &lt;/body&gt;
+ &lt;/html&gt;
+        </pre>
+
+    </section>
+
+    <section>
+        <section>
+            <h2>Some basic HTML tags</h2>
+            <p>Paragraphs</p>
+            <pre>
+
+     &lt;p&gt;This is my first web paragraph.&lt;/p&gt;
+     &lt;p&gt;It will be well designed!&lt;/p&gt;
+            </pre>
+            <p>Emphasis</p>
+            <pre>
+
+     &lt;p&gt;So &lt;em&gt;exciting&lt;/em&gt;! &lt;strong&gt;Note:&lt;/strong&gt; I totally know what 
+     I'm doing.&lt;/p&gt;
+            </pre>
+            <p>So <em>exciting</em>! <strong>Note:</strong> I totally know what 
+     I'm doing.</p>
+        </section>
+        <section>
+            <h2>Breaks and Rules</h2>
+            <pre>
+ 
+ Put the next thing&lt;br /&gt; on a new line.
+            </pre>
+
+            <p>Put the next thing<br /> on a new line.</p>
+
+            <pre>
+
+ &lt;p&gt;Above&lt;/p&gt;
+ &lt;hr /&gt;
+ &lt;p&gt;Below&lt;/p&gt;
+            </pre>
+             <p>Above</p>
+             <hr />
+             <p>Below</p>
+        </section>
+    </section>
+
+    <section>
+        <h2>Headings</h2>
+        <pre>
+
+ &lt;h1&gt;Heading 1&lt;/h1&gt;
+ &lt;h2&gt;Heading 2&lt;/h2&gt;
+ &lt;h3&gt;Heading 3&lt;/h3&gt;
+ &lt;h4&gt;Heading 4&lt;/h4&gt;
+ &lt;h5&gt;Heading 5&lt;/h5&gt;
+ &lt;h6&gt;Heading 6&lt;/h6&gt;
+ &lt;h7&gt;Heading 7&lt;/h7&gt;
+        </pre>
+    </section>
+
+    <section>
+        <section>
+            <h2>Ordered Lists</h2>
+            <pre>
+
+ &lt;ol&gt;
+    &lt;li&gt;List Item One&lt;/li&gt;
+    &lt;li&gt;List Item Two&lt;/li&gt;
+    &lt;li&gt;List Item Three&lt;/li&gt;
+ &lt;/ol&gt;
+            </pre>
+            <ol>
+                <li>List Item One</li>
+                <li>List Item Two</li>
+                <li>List Item Three</li>
+             </ol>
+        </section>
+
+        <section>
+            <h2>Unordered Lists</h2>
+            <pre>
+
+ &lt;ul&gt;
+    &lt;li&gt;List Item One&lt;/li&gt;
+    &lt;li&gt;List Item Two&lt;/li&gt;
+    &lt;li&gt;List Item Three&lt;/li&gt;
+ &lt;/ul&gt;
+            </pre>
+            <ul>
+                <li>List Item One</li>
+                <li>List Item Two</li>
+                <li>List Item Three</li>
+             </ul>
+        </section>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <p>The anchor tag defines a link</p>
+        <p><small>It is the building block of the Internet!</small></p>
+        <pre>
+
+ &lt;a href="http://www.google.com"&gt;Google&lt;/a&gt;
+        </pre>
+        <p><a href="http://www.google.com">Google</a></p>
+        <p>Use the <code>href</code> attribute to specify the destination.</p>
+    </section>
+
+    <section>
+        <h2>Images</h2>
+        <p>Images must be fetched from the server, they are included in web documents
+        with the <code>img</code> tag, which will cause the Browser to get them and
+        place them in the document.</p>
+        <pre>
+
+ &lt;img src="/static/img/puppy.jpg" width="250" height="250" 
+    alt="Puppy Picture" title="Sarah the Staffy" /&gt;
+        </pre>
+        <img src="/static/img/puppy.jpg" width="250" height="250" alt="Puppy Picture" title="Sarah the Staffy" />
+    </section>
+
+    <section>
+        <h2>Tables</h2>
+        <pre>
+
+ &lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1,1&lt;/td&gt;
+        &lt;td&gt;2,1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1,2&lt;/td&gt;
+        &lt;td&gt;2,2&lt;/td&gt;
+    &lt;/tr&gt;
+ &lt;/table&gt;
+        </pre>
+    </section>
+
+    <section>
+        <h2>Block vs. Inline Tags</h2>
+        <pre>
+
+ &lt;div&gt;
+    This is a block
+ &lt;/div&gt;
+        </pre>
+        <pre>
+
+ &lt;p&gt;In this paragraph &lt;span&gt;this is inline&lt;/span&gt;.&lt;/p&gt;
+        </pre>
+    </section>
+
+    <section>
+        <h2>Mark it up!</h2>
+        <p><a href="{% url 'module' module=module doctype='workshop' %}">{{ workshop }}</a></p>
+    </section>
+
+{% endblock %}
