@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% load staticfiles %}
+
+{% block title %}Not Found | GeekChic Programming{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="span6 offset3" id="broken">
+                <img src="{% static 'img/notfound.png' %}" alt="Not Found" />
+                <h3>Not Found!</h2>
+                <p>Unfortunately, we could not find what you're looking for.</p>
+                <p>We don't want you playing hide and seek, but perhaps you're looking
+                in the wrong place? Perhaps going back to <a href="/">the start</a> will get you back
+                on track!</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- No JavaScript Required on this Page -->
+    {% include "analytics.html" %}
+{% endblock %}

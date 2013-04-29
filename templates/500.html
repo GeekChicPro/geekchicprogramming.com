@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% load staticfiles %}
+
+{% block title %}Server Error | GeekChic Programming{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="span6 offset3" id="broken">
+                <img src="{% static 'img/error.png' %}" alt="Not Found" />
+                <h3>Bad Things!</h2>
+                <p>Oh noes! This is embarassing, but we tripped up and our server is having some
+                issues.</p>
+                <p>We promise that a very long email has been sent to our system administrators
+                with a lot of code-type stuff in it, and we're going to fix things up right away!</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- No JavaScript Required on this Page -->
+    {% include "analytics.html" %}
+{% endblock %}

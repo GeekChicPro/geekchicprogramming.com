@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from django.http import Http404
+from auth.mixins import LoginRequiredMixin
 
 MODULES = {
     'one': {
@@ -34,7 +35,7 @@ class ScheduleView(TemplateView):
     
     template_name = "schedule.html"
 
-class SyllabusView(TemplateView):
+class SyllabusView(LoginRequiredMixin, TemplateView):
 
     template_name = "syllabus.html"
 
@@ -43,7 +44,7 @@ class SyllabusView(TemplateView):
         context['modules'] = MODULES
         return context
 
-class ModuleView(TemplateView):
+class ModuleView(LoginRequiredMixin, TemplateView):
 
     def get_template_names(self, *args, **kwargs):
         module  = self.kwargs['module']

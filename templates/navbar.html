@@ -10,6 +10,11 @@
 
                 <ul class="nav pull-right">
                     <li><a href="#">Coming Soon</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url "LogoutView" %}" title="Logout" />Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url "LoginView" %}" title="Login" />Login</a></li>
+                    {% endif %}
                 </ul>
                 {% endblock %}
             </div>
