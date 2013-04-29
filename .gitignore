@@ -25,3 +25,5 @@ eggs
 tmp
 
 .idea
+
+settings.py
