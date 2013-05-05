@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block stylesheet %}
+        {{ block.super }}
+        <link rel="stylesheet" type="text/css" href="{% static 'rs-plugin/css/settings.css' %}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/rs-responsive.css' %}" media="screen" />
+{% endblock %}
+
 {% block main %}
 
     <!-- MAIN CONTENT -->
@@ -172,6 +178,10 @@
 
 {% block javascript %}
     {{ block.super }}
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.themepunch.plugins.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/revolution.custom.js' %}"></script>
+    
     <script type="text/javascript">
         jQuery(document).ready(function() {
             jQuery("#constructionNotice").modal('show');

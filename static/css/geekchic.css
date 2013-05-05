@@ -1,0 +1,88 @@
+/**
+ * Global Stylesheet for geekchicprogramming.com
+ *
+ */
+
+dl.dl-schedule dt {
+    width: 70px;
+}
+
+dl.dl-schedule dd {
+    margin-left: 90px;
+}
+
+aside.controls {
+    bottom: 40px;
+}
+
+div.login-container {
+    margin-top: 180px;
+}
+
+div#login-box form {
+    background-color: #FFF;
+    border: 1px solid #333;
+}
+
+div#login-box form label{
+    text-align: left;
+    margin-left: 60px;
+    margin-right: -60px;
+}
+
+div#login-box form div.form-actions {
+    margin-bottom: 0px !important;
+    padding: 10px 60px 20px 60px;
+    background-color: #FFF;
+    color: #FF3E96;
+    border: none;
+}
+
+div#login-box form div.form-actions a {
+    font-size: 80%;
+    margin-top: 8px;
+    color: #FF3E96;
+}
+
+div.form-header {
+    margin-bottom: 20px;
+    padding: 20px 0;
+    background-color: #000;
+    color: #FF3E96;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+div.form-header h3 {
+    margin: 0;
+    padding: 0;
+}
+
+div.control-group p {
+    margin: 0 20px;
+    font-size: 90%;
+    text-align: center;
+}
+
+div.broken {
+    text-align: center;
+    margin-top: 30px;
+    min-height: 600px;
+}
+
+div.broken img {
+    margin: 0 auto;
+}
+
+div.broken p {
+    font-size: 1.2em;
+}
+
+div.broken h1 {
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+div.shift-down {
+    margin-top: 50px;
+}

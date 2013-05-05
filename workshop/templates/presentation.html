@@ -4,14 +4,8 @@
 {% block title %}GeekChic | {{ presentation }}{% endblock %}
 
 {% block stylesheet %}
-    {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/reveal.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/serif.css' %}" type="text/css" id="theme">
-    <style type="text/css">
-        aside.controls {
-            margin-bottom: 30px;
-        }
-    </style>
 {% endblock %}
 
 
@@ -51,7 +45,8 @@
 
 
 {% block javascript %}
-    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/head.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/reveal.js' %}"></script>
     <script type="text/javascript">

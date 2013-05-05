@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <div class="container">
+            
+            <div class="row show-grid">
+                <div class="span12">
+                    <!-- BREADCRUMBS -->
+                    <div id="breadcrumb">
+                        {% block breadcrumb %}
+                            <ul>
+                                <li class="home"><a href="/">Home</a></li>
+                            </ul>
+                        {% endblock %}
+                    </div>
+
+                    <!-- CONTENT AREA -->
+                    <div class="row show-grid clear-both">
+                        
+                        <!-- ARITCLE AREA -->
+                        <div class="span9 main-column two-columns-right">
+                            <article>
+                                {% block article %}
+
+                                {% endblock %}
+                            </article>
+                        </div>
+
+                        <!-- SIDEBAR AREA -->
+                        <div id="right-sidebar" class="span3 sidebar">
+                            {% block sidebar %}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <hr />
+
+        </div>
+    </div>
+
+{% endblock %}
