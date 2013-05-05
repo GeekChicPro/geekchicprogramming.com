@@ -151,3 +151,30 @@
     </div>
         
 {% endblock %}
+
+{% block modals %}
+    {{ block.super }}
+    <div id="constructionNotice" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>Welcome to GeekChic!</h3>
+        </div>
+        <div class="modal-body">
+            <p>Thanks for checking our our website. The site is currently under construction, so we just
+            wanted to let you know ahead of time that some items or links might be a bit wonky or not 
+            work. Check back often for updates!</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-inverse" data-dismiss="modal">Close</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery("#constructionNotice").modal('show');
+        });
+    </script>
+{% endblock %}
