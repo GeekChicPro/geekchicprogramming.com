@@ -5,9 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{% block title %}GeekChic Programming{% endblock %}</title>
-    <meta name="author" content="{% block author %}Benjamin Bengfort{% endblock %}">
+    <meta name="author" content="{% block author %}Josie Keller{% endblock %}">
     <meta name="keywords" content="{% block keywords %}GeekChic, Programming, Women, Academy, Learning, Fellowship{% endblock %}">
     <meta name="description" content="{% block description %}A Programming Academy for Women.{% endblock %}">
 
@@ -16,40 +17,59 @@
     	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    {% block shortcut_icons %}
+    {% block shortcut_icon %}
     <!-- Shortcut Icons -->
     <link rel="shortcut icon" href="/favicon.png">
     {% endblock %}
 
     {% block stylesheet %}
         <!-- CSS : implied media="all" -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/isotope.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/color_scheme.css' %}" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome-ie7.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}" />
+
+        {% block rs-plugin %}
+        <link rel="stylesheet" type="text/css" href="{% static 'rs-plugin/css/settings.css' %}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/rs-responsive.css' %}" media="screen" />
+        {% endblock %}
+
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/IE-fix.css' %}" />
+        <![endif]-->
     {% endblock %}
 
 </head>
-<body>
+<body>    
+{% block body %}
 
-    {% block navbar %}
-        {% include 'navbar.html' %}
+    {% block topline %}
+    <!-- The line at the top of the page -->
+    <div class="top_line"></div>
     {% endblock %}
-    
-    {% block body %}
 
-    <div id="wrapper" class="container">
-        {% block main %}
-        <div id="main" class="row">
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
 
-        </div>
-        {% endblock %}
-    </div><!-- Page Ends -->
+    {% block main %}
 
+    {% endblock %}
+
+    {% block twitterbar %}
+        {% include 'twitterbar.html' %}
     {% endblock %}
 
     {%  block footer %}
         {% include 'footer.html' %}
     {% endblock %}
 
+{% endblock %}
 
 {% block modals %}
     <!-- Optional extra block for adding hidden HTML elements -->
@@ -57,11 +77,15 @@
 
 {% block javascript %}
     <!-- JavaScript at the bottom of the page for faster loading -->
-    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
-    {% if debug %}
-    <script type="text/javascript" src="{% static "js/debug.js" %}"></script>
-    {% endif %}
+    <script type="text/javascript" src="{% static 'js/jquery-1.7.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.themepunch.plugins.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/revolution.custom.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 
     {% include "analytics.html" %}
 {% endblock %}

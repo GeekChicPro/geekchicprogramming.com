@@ -1,19 +1,41 @@
-<div class="stretch stretch-black">
-    <div id="footer" class="container">
-        <div class="row">
-            <div class="span6">
-                <p class="copyright">&copy; 2013 <a href="http://geekchicprogramming.com">GeekChic</a>, All Rights Reserved<br />
-                </p>
-            </div>
-            <div class="span6">
-                <ul class="unstyled legal-nav">
-                    <li><a href="{% url 'privacy' %}">privacy</a></li>
-                    <li class="sep">&middot;</li>
-                    <li><a href="{% url 'legal' %}">terms of use</a></li>
-                    <li class="sep">&middot;</li>
-                    <li><a href="mailto:geekchicpro@gmail.com">contact</a></li>
-                </ul>
+{% load staticfiles %}
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-top"></div>
+        <div class="footer-wrapper">
+            <div class="container">
+                <div class="row show-grid">
+                    <div class="span12">
+                        <div class="row show-grid">
+                            <div class="span4">
+                                <img alt="" class="footer-logo" src="{% static 'img/geekchic_logo_inverse.png' %}" />
+                            </div>
+                            <div class="span4 footer-center">
+
+                            </div>
+
+                            <div class="span4 footer-right">
+                                <h4 class="center-title">Legal</h4>
+                                <ul class="footer-navigate legal-nav">
+                                    <li><a href="{% url 'privacy' %}">privacy</a></li>
+                                    <li><a href="{% url 'legal' %}">terms of use</a></li>
+                                    <li><a href="mailto:geekchicpro@gmail.com">contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row show-grid">
+                    <div class="span12">
+                        <p class="pull-left">Copyright &copy; 2013 <a href="http://geekchicprogramming.com/" title="GeekChic, LLC">GeekChic, LLC</a> All Rights Reserved</p>
+                        <p class="pull-right">Made with &hearts; by <a href="http://twitter.com/bbengfort" title="twitter">@bbengfort</a> &amp; <a href="http://twitter.com/kellerjo" title="twitter">@kellerjo</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>

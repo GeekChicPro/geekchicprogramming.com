@@ -1,31 +1,153 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block main %}
 
-      <div class="hero-unit">
-        <h2>Women Transforming Technology</h2>
-        <p class="lead">Disrupting the traditional STEM-trained workforce by training creative, insightful women who will catalyze innovation.</p>
-        <p class="lead"><strong>Save the Date! The next GeekChic Programming Workshop is on June 1!</strong></p>
-        <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
-      </div>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container">
+            <div class="bannercontainer">
+                <div class="banner">
+                    <!-- SLIDER BANNER -->
+                    <ul>
+                        <li class="slide3" data-transition="boxfade" 
+                                           data-slotamount="5" 
+                                           data-masterspeed="300">
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h3>'Get GeekChic' Programming Workshops</h3>
-          <p>These weekend workshops target potential GeekChic Programming students seeking an introduction to code. The all-female demographic provides a comfortable environment for women to network, learn about computer programming, and see if computer science may be a field they’re interested in pursuing - all without the traditional barriers to entry. In just one weekend, we’ll introduce a new development skill, demonstrate the command line, and start coding!</p>
-          <p><a class="btn" href="{% url 'schedule' %}">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h3>'Code GeekChic' Programming Bootcamps</h3>
-          <p>Our two-week bootcamps are designed as more advanced workforce training programs for women actively seeking a leg up in their field. Participants should come prepared to dive into the Linux Terminal, Python, Databases, Django, HTML, CSS, WordPress, and JavaScript with a focus on design and development of a complete web application. By the end of bootcamp, you will have a snazzy new program to show off your freshly honed programming skills.</p>
-          <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
-       </div>
-        <div class="span4">
-          <h3>GeekChic Programming Fellowship</h3>
-          <p>The 10-week fellowship program is designed for women pursuing the technical skills to drive a career change or launch their own business. GeekChic Programming lays the foundation for understanding development and technology in a more general sense and prepares students to enter the technology industry and continue learning new things, as all good developers do. At the end of the program, each cohort of lady coders has the skills they need to land job offers from local start-ups, existing organizations, and government contractors looking to expand their technology teams.</p>
-          <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
-        </div>
-      </div>
+                            <img alt="" src="{% static 'img/slider00.png' %}" />
+                            <div class="caption sfl carousel-caption" data-x="0" data-y="40"
+                                data-speed="1000" data-start="500" data-easing="easeInBack" 
+                                style="background: none; padding-left: 0;">
+                                
+                                <p class="big" style="padding: 10px 10px 10px 43px;">Women Transforming Technology</p>
 
+                            </div>
+
+                            <div class="caption sfl carousel-caption" data-x="0" data-y="120"
+                                data-speed="1000" data-start="1000" data-easing="easeInBack" 
+                                style="background: none; padding-left: 0; width: 40%;">
+                                
+                                <p class="small" style="font-size: 1.2em;">Disrupting the traditional STEM-trained 
+                                workforce by training creative, insightful women who will catalyze innovation.</p>
+
+                            </div>
+
+                            <div class="caption sfl carousel-caption" data-x="0" data-y="200"
+                                data-speed="1000" data-start="1500" data-easing="easeInBack" 
+                                style="background: none; padding-left: 0; width: 40%;">
+                                
+                                <p class="small" style="font-size: 1.2em;">Coding requires imagination; Development
+                                teams are looking for new ideas; will you join them?</p>
+
+                            </div>
+                            
+    
+                        </li>
+                        <li class="slide2" data-transition="slideleft"
+                                           data-slotamount="10"
+                                           data-masterspeed="300">
+
+                            <img alt="" src="{% static 'img/slider01.jpg' %}" />
+
+                            <div class="caption sft carousel-caption" data-x="40" data-y="262"
+                                data-speed="1000" data-start="1000" data-easing="easeInBack" 
+                                style="background: none;">
+                                
+                                <p class="big">Save the Date!</p>
+
+                            </div>
+
+                            <div class="caption sfl carousel-caption" data-x="0" data-y="300"
+                                data-speed="1000" data-start="1000" data-easing="easeInBack" 
+                                style="background: none; padding-left: 0; width:100%;">
+                                
+                                <p class="big">The next GeekChic Programming Workshop is on June 1!</p>
+
+                            </div>
+
+
+                        </li>
+                    </ul>
+                    <div class="tp-bannertimer"></div>
+                </div>
+            </div>
+
+            
+            <div class="row main-block">
+                <div class="horizontal-divider span12" style="background-color: #FFF;"></div>
+                <div class="span12">
+                    <div class="title-wrapper">
+                        <h2>Three Excellent Programs</h2>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div class="row">
+                        <div class="span4">
+                            <p class="lead">Programming Workshops</p>
+                            <h3>Get GeekChic</h3>
+                            <p>These weekend workshops target potential GeekChic Programming students seeking an
+                            introduction to code. The all-female demographic provides a comfortable environment for
+                            women to network, learn about computer programming, and see if computer science may be
+                            a field they’re interested in pursuing - all without the traditional barriers to entry.
+                            In just one weekend, we’ll introduce a new development skill, demonstrate the command
+                            line, and start coding!</p>
+                            <p><a href="{% url 'schedule' %}">Details &raquo;</a></p>
+                        </div>
+                        <div class="span4">
+                            <p class="lead">Programming Bootcamps</p>
+                            <h3>Code GeekChic</h3>
+                            <p>Our two-week bootcamps are designed as more advanced workforce training programs for
+                            women actively seeking a leg up in their field. Participants should come prepared to
+                            dive into the Linux Terminal, Python, Databases, Django, HTML, CSS, WordPress, and
+                            JavaScript with a focus on design and development of a complete web application. By
+                            the end of bootcamp, you will have a snazzy new program to show off your freshly honed
+                            programming skills.</p>
+                        </div>
+                        <div class="span4">
+                            <p class="lead">Programming Fellowships</p>
+                            <h3>Fulltime GeekChic</h3>
+                            <p>The 10-week fellowship program is designed for women pursuing the technical skills
+                            to drive a career change or launch their own business. GeekChic Programming lays the
+                            foundation for understanding development and technology in a more general sense and 
+                            prepares students to enter the technology industry and continue learning new things, 
+                            as all good developers do. At the end of the program, each cohort of lady coders has 
+                            the skills they need to land job offers from local start-ups, existing organizations,
+                            and government contractors looking to expand their technology teams.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="horizontal-divider span12"></div>
+            </div>
+
+            <div class="main-block clients">
+                <div class="title-wrapper">
+                    <h2>Excellent Sponsors</h2>
+                </div>
+                <div class="row show-grid">
+                    <div class="span12">
+                        <div id="clients" class="row show-grid">
+                            <div class="span2 hp-wrapper">
+                                <a href="http://threespot.com/">
+                                <img alt="Threespot" src="{% static 'img/sponsors/threespot.png' %}" />
+                                </a>
+                            </div>
+                            <div class="span2 hp-wrapper">
+                                <a href="http://istrategylabs.com/">
+                                <img alt="iStrategyLabs" src="{% static 'img/sponsors/istrategylabs.png' %}" />
+                                </a>
+                            </div>
+                            <div class="span2 hp-wrapper">
+                                <a href="http://www.pyladies.com/">
+                                <img alt="iStrategyLabs" src="{% static 'img/sponsors/pyladies.png' %}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+        
 {% endblock %}
