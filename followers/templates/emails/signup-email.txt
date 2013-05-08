@@ -1,0 +1,14 @@
+Hello {{ name }},
+
+Thanks so much for registering for updates about GeekChic Programming!
+Now you'll be one of the first to know about our upcoming Workshops, Bootcamps, and Fellowships.
+
+Stay tuned for more updates!
+
+Other Ways to Follow GeekChic:
+
+    Follow us on Twitter: @geekchicpro
+    Like us on Facebook:  facebook.com/geekchicprogramming/
+
+The GeekChic Team
+www.geekchicprogramming.com

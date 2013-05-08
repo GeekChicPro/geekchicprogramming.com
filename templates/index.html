@@ -78,6 +78,28 @@
                 </div>
             </div>
 
+            <div class="row show-grid main-block">
+                <div class="horizontal-divider span12" style="background-color: #FFF;"></div>
+                <div class="span12 grey-box">
+                    <div class="hero-block3">
+                        <div class="row show-grid">
+                            <div class="span9">
+                                <div class="hero-content-3">
+                                    <h2>Sign up for email notifications</h2>
+                                    <p>We are working to put together a great calendar of workshops, bootcamps, and fellowships.
+                                    If you'd like to be the first to know about an upcomming class or seminar, sign up to receive
+                                    emails when we schedule them!</p>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="tour-btn">
+                                    <a href="#followForm" role="button" class="btn btn-inverse" data-toggle="modal">Sign Up!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <div class="row main-block">
                 <div class="horizontal-divider span12" style="background-color: #FFF;"></div>
@@ -123,7 +145,10 @@
                     </div>
                 </div>
                 <div class="horizontal-divider span12"></div>
+
             </div>
+            
+            
 
             <div class="main-block clients">
                 <div class="title-wrapper">
@@ -152,6 +177,7 @@
                 </div>
             </div>
 
+            
 
         </div>
     </div>
@@ -174,6 +200,35 @@
             <a href="#" class="btn btn-inverse" data-dismiss="modal">Close</a>
         </div>
     </div>
+
+    <div id="followForm" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>Get GeekChic Email Notifications</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="{% url 'email_signup' %}" method="POST">
+                <legend>Be the first to learn about upcoming classes</legend>
+                <div class="control-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" name="name" placeholder="Jane Doe" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                        <input type="email" name="email" placeholder="jane@example.com" />
+                    </div>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" id="cancelEmailBtn" data-loading-text="Cancel">Cancel</button>
+            <button class="btn btn-inverse" id="submitEmailBtn" data-loading-text="Saving...">Submit</button>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
@@ -183,8 +238,57 @@
 	<script type="text/javascript" src="{% static 'js/revolution.custom.js' %}"></script>
     
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery("#constructionNotice").modal('show');
-        });
+        jQuery.noConflict();
+        (function($) {
+            $(document).ready(function() {
+                $("#constructionNotice").modal('show');
+
+                // Bind Email Signup Buttons
+                $('#cancelEmailBtn').click(function() {
+                    
+                    $('#followForm input[type=text]').val('');
+                    $('#followForm input[type=email]').val('');
+                    $('#followForm').modal('hide');
+
+                });
+
+                $('#submitEmailBtn').click(function() { 
+
+                    var controls = $("#followForm div.modal-footer button");
+                    var action   = $("#followForm form").attr("action");
+                    
+                    controls.button('loading');
+
+                    var data = {
+                        'name': $('input[name=name]').val(),
+                        'email': $('input[name=email]').val(),
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    }
+
+                    $.post(action, data, function(data) {
+                        var note  = $('<div class="alert"></div>');
+                        var close = $('<button type="button" class="close" data-dismiss="alert">&times;</button>')
+                        note.append(close);
+
+                        if (data.success) {
+                            note.append($("<h2>Thanks!</h2> <p>You've been signed up! Check your inbox for an email from us, and make sure to add geekchicpro@gmail.com to your contacts!</p>"));
+                            note.addClass("alert-success");
+                        } else {
+                            note.append($("<h2>Oh No!</h2> <p>Unfortunately, there was a problem saving your email.<br />Have you already registered? Keep in mind both fields are required.</p>"));
+                            note.addClass("alert-error");
+                        }
+                        $("#followForm div.modal-body").prepend(note);
+                        controls.button('reset');
+
+                        if (data.success) {
+                            setTimeout(function() {
+                                $("#followForm").modal('hide');
+                            }, 2000);
+                        }
+                    });
+                });
+
+            });
+        })(jQuery);
     </script>
 {% endblock %}

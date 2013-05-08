@@ -1,0 +1,10 @@
+Hello GeekChic Super Stars, this is Dakota-- your server! 
+
+I'm pleased to let you know that someone has subscribed for our email updates using the sign up form on the front page. This person should have been sent our introduction email, check the logs to ensure that this happened! Here is our new follower:
+
+{{ name }} <{{ email }}> 
+
+I hope you're as excited as I am! 
+
+Your Server,
+Dakota
