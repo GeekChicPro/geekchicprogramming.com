@@ -1,0 +1,39 @@
+{% extends 'page.html' %}
+
+{% block title %}GeekChic | <!-- ADD YOUR TITLE HERE -->{% endblock %}
+
+{% block breadcrumb %}
+            <ul>
+                <!-- Add your breadcrumb navs as listitems here -->
+                <li class="home"><a href="/">Home</a></li>
+                <li><a href="#">Section</a></li>
+                <li>THIS PAGE</li>
+            </ul>
+{% endblock %}
+
+{% block article %}
+
+    <!-- ADD THE CONTENT OF YOUR PAGE HERE -->
+
+    <h1>TITLE OF PAGE</h1>
+    <p class="lead">SUBTITLE</p>
+
+    <p>Add your content!<p>
+
+{% endblock %}
+
+{% block sidebar %}
+    
+    <!-- ADD SIDEBAR WIDGETS HERE -->
+    
+    <!-- This is an example of a Link Block -->
+    <div class="side-nav sidebar-block">
+        <h2>Section</h2>
+        <ul>
+            <li><a href="#">Other Page</a></li>
+            <li><a href="#">Other Page</a></li>
+            <li><a href="#">Other Page</a></li>
+        </ul>
+    </div>
+
+{% endblock %}
