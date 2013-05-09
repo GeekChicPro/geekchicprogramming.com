@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^contact-us/$', ContactFormView.as_view(), name="contact"),
     url(r'^signup/$', AddFollower.as_view(), name="email_signup"),
     url(r'^workshops/', include('workshop.urls')),
+    url(r'^grappelli/', include('grappelli.urls')), 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('auth.urls')),
 )
