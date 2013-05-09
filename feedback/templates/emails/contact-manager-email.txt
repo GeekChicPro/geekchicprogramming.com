@@ -1,0 +1,16 @@
+Hello Team GeekChic, this is Dakota-- your server!
+
+I'm just forwarding along a message from our email contact form, you may read it below!
+
+(Keep in mind, the details are in the message block)
+
+Keep Carrying On,
+Your Server, Dakota
+
+---------- Forwarded message ----------
+From: {{ sender }} <{{ email }}>
+Date: {% now "D, M d, Y \a\t h:i A" %}
+Subject: subject
+
+
+{{ message }}

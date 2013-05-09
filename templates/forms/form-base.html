@@ -1,0 +1,67 @@
+{% extends "page.html" %}
+
+{% block article %}
+    
+    <div class="contact-form">
+    <h1>{% block form_title %}GeekChic Form{% endblock %}</h1>
+    {% block form_description %}{% endblock %}
+    {# Yank out this form bit into its own html for inclusion here. #}
+    <form {% block form_method %}method="post"{% endblock %} 
+          {% block form_action %}action=""{% endblock %} 
+          {% block form_enctype %}{%endblock%}
+          {% block form_class %}class="form-horizontal"{% endblock %} 
+          {% block form_id %}id="{{form.auto_id}}"{% endblock %}>
+
+
+        {% block form_body %}
+        <fieldset>
+            <legend>{% block form_legend %}Our awesome fields{% endblock %}</legend>
+
+            <!--- Use this alerts div to put any alerts -->
+            <div id="alerts">
+            {% block alerts %}
+            {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <h2 class="alert-heading">{% block form_error_heading %}Whoops!{% endblock %}</h2>
+                        <p>{{ error }}<p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            
+            {% endblock %}
+            </div> 
+            <div class="clearfix"></div>
+            
+            {% for field in form %}
+            <div class="control-group {% if field.errors %}error{% endif%}">
+                <label for="{{field.id_for_label}}" class="control-label">{{field.label}}</label>
+                <div class="controls">
+                    {{ field }}
+                    {% if field.errors %}
+                    {% for error in field.errors %}
+                    <span class="help-inline">{{error}}</span>
+                    {% endfor %}
+                    {% else %}
+                    <span class="help-inline"></span>
+                    {% endif %}
+                    <!-- <p class="help-block">{{ field.help_text }}</p> -->
+                </div>
+            </div>
+            {% endfor %}
+            {% block form_help %}
+            
+            {% endblock %}
+            <div class="form-actions">
+                {% block form_actions %}
+                <button class="btn btn-inverse" type="submit">{% block form_submit_label %}Submit{% endblock %}</button>
+                <button class="btn" type="reset">{% block form_reset_label %}Cancel{% endblock %}</button>
+                {% csrf_token %}
+                {% endblock %}
+            </div>
+        </fieldset>
+        {% endblock %}
+    </form>
+    </div>
+{% endblock %}

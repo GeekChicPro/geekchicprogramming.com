@@ -1,0 +1,74 @@
+{% extends "forms/form-base.html" %}
+
+{% block title %}GeekChic | Contact Us{% endblock %}
+
+{% block breadcrumb %}
+            <ul>
+                <!-- Add your breadcrumb navs as listitems here -->
+                <li class="home"><a href="/">Home</a></li>
+                <li>Contact Us</li>
+            </ul>
+{% endblock %}
+
+{% block alerts %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h2>Message Sent!</h2>
+            {% autoescape off %}
+            <p>{{ message }}</p>
+            {% endautoescape %}
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+    {{ block.super }}
+{% endblock %}
+
+{% block form_title %}Get in Touch{% endblock %}
+{% block form_method %}method="post"{% endblock %}
+{% block form_action %}action="{% url 'contact' %}"{% endblock %}
+{% block form_class %}{% endblock %}
+{% block form_id %}id="contactForm"{% endblock %}
+{% block form_legend %}Compose Your Message{% endblock %}
+{% block form_submit_label %}Send{% endblock %}
+{% block form_reset_label %}Reset{% endblock %}
+
+{% block sidebar %}
+    
+    <!-- ADD SIDEBAR WIDGETS HERE -->
+    
+    <!-- This is an example of a Link Block -->
+    <div class="side-nav sidebar-block">
+        <h2>About GeekChic</h2>
+        <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Philosophy</a></li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript">
+        jQuery.noConflict();
+        (function($) {
+            $(document).ready(function() {
+                
+                var sendBtn  = $("form#contactForm button[type=submit]");
+                var resetBtn = $("form#contactForm button[type=reset]");
+                
+                sendBtn.data('loading-text', 'Sending...');
+                resetBtn.data('loading-text', 'Reset');
+
+                sendBtn.click(function(event) {
+                    sendBtn.button('loading');
+                    resetBtn.button('loading');
+                });
+            });
+        })(jQuery);
+    </script>
+{% endblock %}

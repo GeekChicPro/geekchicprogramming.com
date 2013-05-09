@@ -1,0 +1,17 @@
+<p>Hello Team GeekChic, this is <em>Dakota</em>-- your server!</p>
+
+<p>I'm just forwarding along a message from our email contact form, you may read it below!</p>
+<p>(Keep in mind the details are in the message block)</p>
+
+<p>Keep Carrying On,<br />Your Server, Dakota</p>
+
+<p>
+---------- Forwarded message ----------<br />
+From: <strong>{{ sender }} &lt;{{ email }}&gt;</strong><br />
+Date: {% now "D, M d, Y \a\t h:i A" %}<br />
+Subject: {{ subject }}
+</p>
+
+<pre style="font-size: 1.3em;">
+{{ message }}
+</pre>

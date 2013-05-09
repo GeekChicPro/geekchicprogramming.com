@@ -86,3 +86,9 @@ div.broken h1 {
 div.shift-down {
     margin-top: 50px;
 }
+
+div.form-actions {
+    border: none;
+    background-color: #FFF;
+    padding: 0;
+}

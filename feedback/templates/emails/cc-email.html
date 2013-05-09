@@ -1,0 +1,22 @@
+<p>Dear {{ sender }},</p>
+
+<p>Thank you for contacting GeekChic! We appreciate your feedback, and we'll respond to your email, <strong>{{ email }}</strong>, as soon as possible!</p>
+
+<p>As you requested, we have forwarded you a copy of the message you sent us.</p> 
+
+<p>
+My Kindest Wishes, <br />
+The GeekChic Server
+</p>
+
+<p>
+---------- Forwarded message ----------<br />
+From: {{ sender }} &lt;{{ email }}&gt;<br />
+Date: {% now "D, M d, Y \a\t h:i A" %}<br />
+Subject: {{ subject }} <br />
+To: Team GeekChic<br />
+</p>
+
+<pre style="font-size:1.3em">
+{{ message }}
+</pre>
