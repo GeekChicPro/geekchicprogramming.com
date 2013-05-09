@@ -6,6 +6,9 @@ class Follower(models.Model):
     email = models.EmailField( unique=True )
     added = models.DateTimeField( auto_now=True )
 
+    def __unicode__(self):
+        return "%s <%s>" % (self.name, self.email)
+
     class Meta:
         db_table = 'followers'
         ordering = ['added', 'name']
