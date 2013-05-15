@@ -18,4 +18,6 @@ urlpatterns = patterns('',
     url(r'^grappelli/', include('grappelli.urls')), 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('auth.urls')),
+    url(r'^blog/', include('zinnia.urls'), name="blog"),
+    url(r'^comments/', include('django.contrib.comments.urls')),
 )
