@@ -1,0 +1,14 @@
+{% load i18n %}
+                            <ul>
+                                {% for comment in comments %}
+                                <li>
+                                    {% with entry=comment.content_object %}
+                                    <p>{{ comment.name }} {% trans "on" %}
+                                    <a href="{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}" title="{% trans 'Comment on' %} {{ entry.title }}"> {{ entry.title }}</a>
+                                    {% endwith %}
+                                    </p>
+                                </li>
+                                {% empty %}
+                                <li><p>{% trans "No Comments Yet" %}</p></li>
+                                {% endfor %}
+                            </ul>

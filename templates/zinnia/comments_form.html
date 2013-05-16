@@ -1,0 +1,45 @@
+{% load comments %}
+
+            <hr>
+            <div class="reply-form">                                    
+                <div class="row show-grid">
+                    <h2 class="offset1">Leave a Reply</h2>
+                    {% get_comment_form for object as comform %}
+                    <form id="commentForm" method="post" action="{% comment_form_target %}">
+                        <div class="control-group span4 offset1">
+                            <label for="inputName" class="control-label">NAME<sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder="Name" id="inputName" name="name" class="span4" />
+                            </div>
+                        </div>                                         
+                        <div class="control-group span4">
+                            <label for="inputEmail" class="control-label">EMAIL<sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" class="span4" id="inputEmail" name="email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="control-group span8 offset1">
+                            <label class="control-label" for="inputWebsite">WEBSITE</label>
+                            <div class="controls">
+                                <input type="text" class="span8" id="inputWebsite" name="url" />
+                            </div>
+                        </div>
+                        <div class="control-group span8 offset1">
+                            <label class="control-label" for="textarea">COMMENT<sup>*</sup></label>
+                            <div class="controls">
+                                <textarea class="span8" rows="4" id="textarea" name="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group offset1 form-button-offset">
+                            <input style="margin-left: 0;" type="submit" class="btn btn-inverse" value="Post Comment" />
+                        </div>
+                        {% csrf_token %}
+                        {{ comform.honeypot }}
+                        {{ comform.content_type }}
+                        {{ comform.object_pk }}
+                        {{ comform.timestamp }}
+                        {{ comform.security_hash }}
+                        <input type="hidden" name="next" value="{{ object.get_absolute_url }}"#comments" />
+                    </form>
+                </div>
+            </div>

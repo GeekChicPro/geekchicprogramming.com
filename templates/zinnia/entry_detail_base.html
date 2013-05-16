@@ -1,0 +1,174 @@
+{% extends 'zinnia/base.html' %}
+{% load comments i18n zinnia_tags %}
+{% load url from future %}
+
+{% block title %}{{ object.title }} - GeekChic{% endblock %}
+
+{% block description %}{% if object.excerpt %}{{ object.excerpt|striptags }}{% else %}{{ object.content|striptags|truncatewords:100 }}{% endif %}{% endblock %}
+
+{% block keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block link %}
+  {{ block.super }}
+  {% with previous_entry=object.previous_entry %}{% if previous_entry %}
+  <link rel="prev" title="{{ previous_entry.title }}" href="{{ previous_entry.get_absolute_url }}" />
+  {% endif %}{% endwith %}
+  {% with next_entry=object.next_entry %}{% if next_entry %}
+  <link rel="next" title="{{ next_entry.title }}" href="{{ next_entry.get_absolute_url }}" />
+  {% endif %}{% endwith %}
+  <link rel="shortlink" href="{{ object.short_url }}" />
+  <link rel="canonical" href="{{ object.get_absolute_url }}" />
+  {% with year=object.creation_date|date:"Y" month=object.creation_date|date:"m" day=object.creation_date|date:"d" %}
+  <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed of discussions on" %} '{{ object.title }}'"
+        href="{% url 'zinnia_entry_discussion_feed' year month day object.slug %}" />
+  <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed of comments on" %} '{{ object.title }}'"
+        href="{% url 'zinnia_entry_comment_feed' year month day object.slug %}" />
+  <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed of pingbacks on" %} '{{ object.title }}'"
+        href="{% url 'zinnia_entry_pingback_feed' year month day object.slug %}" />
+  <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed of trackbacks on" %} '{{ object.title }}'"
+        href="{% url 'zinnia_entry_trackback_feed' year month day object.slug %}" />
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+   
+    
+
+    {% block article_title %}
+    <div class="row">
+        <div class="span7">
+            <h1>{{ object.title }}</h1>
+        </div>
+        <div class="span2 admin-tools">
+            {% block admin_tools %}
+            {% if perms.zinnia.change_entry %}
+              <a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
+                {% trans "Edit the Article" %}
+              </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+    {% endblock %}
+
+    {% block article_image %}
+    <img alt="<{{ object.title }} Image>" src="{{ object.image.url }}" class="img-rounded" />
+    {% endblock %}
+
+    {% block article_html_content %}
+    <div class="article-body">
+        {{ object.html_content|safe }}
+    </div>
+    {% endblock %}
+
+    {% block article_meta_panel %}
+     <div class="post-item-panel">
+            <ul>
+                <li class="date">
+                  <p><i class="icon-calendar"></i>{{ object.creation_date|date }}</p></li>
+                <li><p><i class="icon-user"></i>{% trans "by" %} 
+                    {% with authors=object.authors.all %}
+                    {% for author in authors %}
+                    <a href="{{ author.get_absolute_url }}" 
+                       rel="author" 
+                       title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}">
+                       {{ author|title }}
+                       </a>{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    Anonymous
+                    {% endfor %}
+                    {% endwith %}
+                {{ object.author.first_name }}</p></li>
+                <li><p><i class="icon-tags"></i>
+                    {% for tag in object.tags_list %}
+                    <a href="{% url 'zinnia_tag_detail' tag %}"
+                       title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}"
+                       rel="tag">{{ tag|title }}</a>{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    <span>{% trans "No tags" %}</span>
+                    {% endfor %}
+                </p></li>
+                <li class="comments"><p><i class="icon-comments-alt"></i>
+                    {% with comment_count=object.comment_count %}
+                    {% if comment_count %}
+                    <a href="{{ object.get_absolute_url }}#comments"
+                       title="{% blocktrans with object=object.title %}Reactions for {{ object }}{% endblocktrans %}">
+                    {% blocktrans count comment_count=comment_count %}{{ comment_count }} reaction{% plural %}{{ comment_count }} reactions{% endblocktrans %}
+                    </a>
+                    {% else %}
+                    {% trans "0 reactions" %}
+                    {% endif %}
+                    {% endwith %}
+                    </p></li>
+            </ul>
+        </div>
+        {% endblock %}
+
+        {% block social_share %}
+        <div class="post-socials">
+            <h2>Social Share</h2>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-503f5c291ae38f65"></script>
+            <!-- AddThis Button END -->
+        </div>
+        {% endblock %}
+
+        {% block comments %}
+        <div class="comments" name="comments" id="comments">
+            <h2>{% trans "Discussion" %}</h2>
+            {% for comment in object.comments %}
+            <div class="comment-object">
+                <div class="row show-grid comment-details">
+                    <div class="span5">
+                        {% if comment.url %}
+                        <a class="name" href="{{ comment.url }}">{{ comment.name|title }}</a>
+                        {% else %}
+                        {{ comment.name|title }}
+                        {% endif %}
+                    </div>
+                    <div class="span3">
+                        <p class="comment-date">{{ comment.submit_date|date:"F j\, Y \a\t f A" }}</p>
+                    </div>
+                    <div class="span1">
+                        <a class="reply" href="#commentForm">Reply</a>
+                    </div>
+                </div>
+                <div class="row show-grid comment-item">
+                    <table class="comment-table span9">
+                        <tr>
+                            <td>
+                                {% if comment.url %}
+                                <a href="{{ comment.url }}"><img alt="{{ comment.name }}" src="{% get_gravatar comment.email 40 "G" %}" /></a>
+                                {% else %}
+                                <img alt="{{ comment.name }}" src="{% get_gravatar comment.email 40 "G" %}" />
+                                {% endif %}
+                            </td>
+                            <td class="baloon"></td>
+                            <td class="comment-body">
+                                <p>{{ comment.comment }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            {% empty %}
+            <p>{% trans "Be the first to leave a reply!" %}</p>
+            {% endfor %}
+        </div>
+        {% endblock %}
+
+        {% block comments_form %}
+        {% if object.comments_are_open %}
+            {% include 'zinnia/comments_form.html' %}
+        {% endif %}
+        {% endblock %}
+
+{% endblock %}

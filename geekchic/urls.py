@@ -21,3 +21,9 @@ urlpatterns = patterns('',
     url(r'^blog/', include('zinnia.urls'), name="blog"),
     url(r'^comments/', include('django.contrib.comments.urls')),
 )
+
+
+# REMOVE THIS! DEBUG ONLY
+from django.conf import settings
+if settings.DEBUG:
+    urlpatterns += patterns('', url(r'^media/(.*)$', 'django.views.static.serve', kwargs={'document_root': '/Users/benjamin/repos/git/geekchicprogramming.com/media_tmp/'}), )

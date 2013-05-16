@@ -1,0 +1,22 @@
+{% load i18n %}
+
+                            <ul>
+                                {% for entry in entries %}
+                                <li>
+                                    <a class="photo" href="{{ entry.get_absolute_url }}">
+                                        <img class="entry-photo-thumbnail" alt="{{ entry.title }}" src="{{ entry.image.url }}" />
+                                    </a>
+                                    <p><a href="{{ entry.get_absolute_url }}" 
+                                          title="{{ entry.title }}"
+                                          rel="bookmark">
+                                            {{ entry.title }}
+                                       </a>
+                                    </p>
+                                    <p class="date">
+                                        <i class="icon-calendar"></i> {{ entry.creation_date|date }}
+                                    </p>
+                                </li>
+                                {% empty %}
+                                <li>{% trans "No entries yet." %}</li>
+                                {% endfor %}
+                            </ul>

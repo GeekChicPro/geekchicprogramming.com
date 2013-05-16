@@ -1,0 +1,91 @@
+{% extends "zinnia/base.html" %}
+{% load i18n zinnia_tags comments %}
+{% load url from future %}
+
+{% block description %}{% trans "Latest entries for" %} {% if category %}{% trans "the category" %} {{ category }}{% if category.description %}: {{ category.description|striptags|safe }}{% endif %}{% endif %}{% if tag %}{% trans "the tag" %} {{ tag }}{% endif %}{% if author %}{% trans "the author" %} {{ author }}{% endif %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} {% trans "page" %} {{ page_obj.number }}{% endifnotequal %}{% endif %}{% endblock %}
+
+{% block link %}
+  {{ block.super }}
+  {% if category %}
+    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed" %} {{ category }}" href="{% url 'zinnia_category_feed' category.tree_path %}" />
+  {% endif %}
+  {% if tag %}
+    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed" %} {{ tag }}" href="{% url 'zinnia_tag_feed' tag.name %}" />
+  {% endif %}
+  {% if author %}
+    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS Feed" %} {{ author }}" href="{% url 'zinnia_author_feed' author.username %}" />
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% block content-loop %}
+{% for object in object_list %}
+
+    <div class="post-item">
+        <h2>{{ object.title }}</h2>
+        <img alt="{{ object.title }}" src="{{ object.image.url }}" />
+        <p class="post-description">
+            {% if object.excerpt %}
+            {{ object.excerpt|safe }}
+            {% else %}
+            {{ object.html_content|truncatewords_html:100|safe }}
+            {% endif %}
+        </p>
+        <a class="post-more" href="{{ object.get_absolute_url }}" title="{{ object.title }}">Continue Reading&nbsp;&raquo;</a>
+        <div class="post-item-panel">
+            <ul>
+                <li class="date">
+                  <p><i class="icon-calendar"></i>{{ object.creation_date|date }}</p></li>
+                <li><p><i class="icon-user"></i>{% trans "by" %} 
+                    {% with authors=object.authors.all %}
+                    {% for author in authors %}
+                    <a href="{{ author.get_absolute_url }}" 
+                       rel="author" 
+                       title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}">
+                       {{ author|title }}
+                       </a>{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    Anonymous
+                    {% endfor %}
+                    {% endwith %}
+                {{ object.author.first_name }}</p></li>
+                <li><p><i class="icon-tags"></i>
+                    {% for tag in object.tags_list %}
+                    <a href="{% url 'zinnia_tag_detail' tag %}"
+                       title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}"
+                       rel="tag">{{ tag|title }}</a>{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    <span>{% trans "No tags" %}</span>
+                    {% endfor %}
+                </p></li>
+                <li class="comments"><p><i class="icon-comments-alt"></i>
+                    {% with comment_count=object.comment_count %}
+                    {% if comment_count %}
+                    <a href="{{ object.get_absolute_url }}#comments"
+                       title="{% blocktrans with object=object.title %}Reactions for {{ object }}{% endblocktrans %}">
+                    {% blocktrans count comment_count=comment_count %}{{ comment_count }} reaction{% plural %}{{ comment_count }} reactions{% endblocktrans %}
+                    </a>
+                    {% else %}
+                    {% trans "0 reactions" %}
+                    {% endif %}
+                    {% endwith %}
+                    </p></li>
+            </ul>
+        </div>
+    </div>
+
+{% empty %}
+  <p class="post-item">
+    <a href="{% url 'admin:zinnia_entry_add' %}">{% trans "No entries yet." %}</a>
+  </p>
+{% endfor %}
+{% endblock %}
+
+{% block content-pagination %}
+{% if is_paginated %}
+  {% zinnia_pagination page_obj %}
+{% endif %}
+{% endblock %}
+
+{% endblock %}

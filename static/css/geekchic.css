@@ -92,3 +92,23 @@ div.form-actions {
     background-color: #FFF;
     padding: 0;
 }
+
+p.date i {
+    background-image: none;
+}
+
+img.entry-photo-thumbnail {
+    max-width: 60px;
+}
+
+div.article-body p {
+    font-size: 110%;
+}
+
+#id_honeypot {
+    display: none;
+}
+
+.admin-tools {
+    padding-top: 12px;
+}
