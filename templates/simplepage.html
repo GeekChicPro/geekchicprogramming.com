@@ -1,0 +1,38 @@
+{% extends 'page.html' %}
+
+{% block title %}{% if object.title %}{{ object.title }} - GeekChic{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block author %}{% if object.author %}{{ object.author }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block keywords %}{% if object.keywords %}{{ object.keywords }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block description %}{% if object.description %}{{ object.description }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block breadcrumb %}
+        <ul>
+            <li class="home"><a href="/">Home</a></li>
+            {% for crumb in object.section.breadcrumb_list %}
+            <li>{% if crumb.get_absolute_url %}<a href="{{ crumb.get_absolute_url }}" title="crumb">{{ crumb }}</a>{% else %}{{ crumb }}{% endif %}</li>
+            {% endfor %}
+            <li>{{ object.name|title }}</li>
+        </ul>
+
+{% endblock %}
+
+{% block article %}
+    {{ object.to_html|safe }}
+{% endblock %}
+
+{% block sidebar %}
+   <!-- ADD SIDEBAR WIDGETS HERE -->
+    
+    <!-- This is an example of a Link Block -->
+    <div class="side-nav sidebar-block">
+        <h2>{{ object.section }}</h2>
+        <ul>
+            {% for page in object.related.all %}
+            <li><a href="{{ page.get_absolute_url }}" 
+                   title="{{ page.title }}">{{ page.name|title }}</a></li>
+            {% empty %}
+            <li>No Related Pages</li>
+            {% endfor %}
+        </ul>
+    </div> 
+{% endblock %}

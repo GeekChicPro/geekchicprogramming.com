@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 from followers.views import AddFollower
 from feedback.views import ContactFormView
+from simplepage.views import SimplePageView
 
 admin.autodiscover()
 
@@ -20,6 +21,9 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('auth.urls')),
     url(r'^blog/', include('zinnia.urls'), name="blog"),
     url(r'^comments/', include('django.contrib.comments.urls')),
+
+    # This must be on the last line
+    url(r'^((?P<section>\w+)/)?(?P<name>\w+)/$', SimplePageView.as_view(), name="simplepage_page"),
 )
 
 
