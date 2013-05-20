@@ -8,16 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{% block title %}GeekChic Programming{% endblock %}</title>
+    
+    {% block meta %}
     <meta name="author" content="{% block author %}Josie Keller{% endblock %}">
     <meta name="keywords" content="{% block keywords %}GeekChic, Programming, Women, Academy, Learning, Fellowship{% endblock %}">
     <meta name="description" content="{% block description %}A Programming Academy for Women.{% endblock %}">
+    {% endblock %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
     	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    {% block shortcut_icon %}
+    {% block link %}
     <!-- Shortcut Icons -->
     <link rel="shortcut icon" href="/favicon.png">
     {% endblock %}
