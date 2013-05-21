@@ -116,6 +116,6 @@ class SimplePage(BaseSimplePage, RelatedSimplePage):
 
     def get_absolute_url(self):
         # Temporary 
-        if self.section:
+        if self.section and not self.section.lander == self:
             return "/%s/%s/" % (self.section.name, self.name)
         return "/%s/" % self.name

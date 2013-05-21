@@ -11,7 +11,7 @@
             {% for crumb in object.section.breadcrumb_list %}
             <li>{% if crumb.get_absolute_url %}<a href="{{ crumb.get_absolute_url }}" title="crumb">{{ crumb }}</a>{% else %}{{ crumb }}{% endif %}</li>
             {% endfor %}
-            <li>{{ object.name|title }}</li>
+            <li>{{ object.title|title }}</li>
         </ul>
 
 {% endblock %}
@@ -29,7 +29,7 @@
         <ul>
             {% for page in object.related.all %}
             <li><a href="{{ page.get_absolute_url }}" 
-                   title="{{ page.title }}">{{ page.name|title }}</a></li>
+                   title="{{ page.title }}">{{ page.title|title }}</a></li>
             {% empty %}
             <li>No Related Pages</li>
             {% endfor %}
