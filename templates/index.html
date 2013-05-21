@@ -163,13 +163,18 @@
                                 </a>
                             </div>
                             <div class="span2 hp-wrapper">
+                                <a href="http://sunlightfoundation.com/">
+                                <img alt="Sunlight Foundation" src="{% static 'img/sponsors/sunlightfoundationlogo.png' %}" />
+                                </a>
+                            </div>
+                            <div class="span2 hp-wrapper">
                                 <a href="http://istrategylabs.com/">
                                 <img alt="iStrategyLabs" src="{% static 'img/sponsors/istrategylabs.png' %}" />
                                 </a>
                             </div>
                             <div class="span2 hp-wrapper">
                                 <a href="http://www.pyladies.com/">
-                                <img alt="iStrategyLabs" src="{% static 'img/sponsors/pyladies.png' %}" />
+                                <img alt="PyLadies" src="{% static 'img/sponsors/pyladies.png' %}" />
                                 </a>
                             </div>
                         </div>
@@ -186,21 +191,6 @@
 
 {% block modals %}
     {{ block.super }}
-    <div id="constructionNotice" class="modal hide fade">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3>Welcome to GeekChic!</h3>
-        </div>
-        <div class="modal-body">
-            <p>Thanks for checking our our website. The site is currently under construction, so we just
-            wanted to let you know ahead of time that some items or links might be a bit wonky or not 
-            work. Check back often for updates!</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn btn-inverse" data-dismiss="modal">Close</a>
-        </div>
-    </div>
-
     <div id="followForm" class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -241,8 +231,6 @@
         jQuery.noConflict();
         (function($) {
             $(document).ready(function() {
-                $("#constructionNotice").modal('show');
-
                 // Bind Email Signup Buttons
                 $('#cancelEmailBtn').click(function() {
                     
