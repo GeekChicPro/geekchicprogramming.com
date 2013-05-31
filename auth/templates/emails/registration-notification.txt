@@ -1,0 +1,19 @@
+{% if user.first_name %}Hello {{ user.first_name }},{% else %}Hello,{% endif %}
+
+Thank you for registering for a GeekChic Programming Workshop! We have created a username and password for you to login and get access to the materials for the course. You can login with the following information:
+
+    USERNAME: {{ user.username }}
+    {% if password %}PASSWORD: {{ password }}{% endif %}
+
+You may want to get started setting up your development environment ahead of the course. We recommend you do so by following the instructions here:
+
+http://geekchicprogramming.com/workshops/module-one/workshop/
+
+You will have to login to view this page.
+
+Thanks for Registering!
+The GeekChic Team
+www.geekchicprogramming.com
+
+
+Note: This email is intended for {{ user.full_email }}. If you have received this email in error, please notify us by replying to this email.

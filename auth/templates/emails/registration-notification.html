@@ -1,0 +1,26 @@
+{% if user.first_name %}<p>Hello {{ user.first_name }},</p>{% else %}<p>Hello,</p>{% endif %}
+
+<p>Thank you for registering for a GeekChic Programming Workshop! We have created
+   a username and password for you to login and get access to the materials for the
+   course. You can login with the following information:</p>
+
+<p><pre>
+    USERNAME: {{ user.username }}
+    {% if password %}PASSWORD: {{ password }}{% endif %}
+</pre></p>
+
+<p>You may want to get started setting up your development environment ahead of the
+course. We recommend you do so by following the instructions here:</p>
+
+<p><a href="http://geekchicprogramming.com/workshops/module-one/workshop/">http://geekchicprogramming.com/workshops/module-one/workshop/</a></p>
+
+<p>You will have to login to view this page.</p>
+
+<p>
+Thanks for Registering!<br />
+The GeekChic Team<br />
+<a href="http://geekchicprogramming.com">www.geekchicprogramming.com</a><br />
+</p>
+
+<p><strong>Note:</strong> This email is intended for {{ user.full_email }}. If you have received
+this email in error, please notify us by replying to this email.</p>

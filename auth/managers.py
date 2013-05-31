@@ -2,7 +2,7 @@ __author__ = 'benjamin'
 
 from django.db import models
 
-class AuthorManager(models.Manager):
+class StudentManager(models.Manager):
 
     def unique_emails(self):
         """

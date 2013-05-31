@@ -3,10 +3,12 @@ import hashlib
 
 from django.db import models
 from django.contrib.auth.models import User
-from managers import AuthorManager
+from managers import StudentManager
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import signals
+from auth.signals import create_profile
 
-class AuthorProfile(models.Model):
+class StudentProfile(models.Model):
 
     user      = models.OneToOneField( User, editable=False, related_name="profile" )
     biography = models.TextField( blank=True, null=True, default=None )
@@ -32,7 +34,7 @@ class AuthorProfile(models.Model):
 
     def delete(self, using=None):
         self.user.delete(using=using)
-        super(AuthorProfile, self).delete(using=using)
+        super(StudentProfile, self).delete(using=using)
 
     def __unicode__(self):
         return self.full_email
@@ -61,9 +63,9 @@ SOCIAL_LINK_TYPES = (
     ("YT", "YouTube"),
 )
 
-class AuthorLink(models.Model):
+class StudentLink(models.Model):
 
-    profile = models.ForeignKey( AuthorProfile, related_name="links" )
+    profile = models.ForeignKey( StudentProfile, related_name="links" )
     href    = models.URLField( verbose_name="URL" )
     target  = models.CharField( max_length=2, choices=SOCIAL_LINK_TYPES )
 
@@ -86,14 +88,14 @@ class AuthorLink(models.Model):
 ## Django User Model Proxy
 ######################################################################
 
-class Author(User):
+class Student(User):
     """
     Proxy class for django.contrib.auth.models.User for enacting our
     methods and management on the User database without affecting the
     User class.
     """
 
-    objects = AuthorManager()
+    objects = StudentManager()
 
     @classmethod
     def fromUser(klass, user):
@@ -118,3 +120,10 @@ class Author(User):
 
     class Meta:
         proxy= True
+
+######################################################################
+## Ensure that when a Student or User is created, a Profile is too.
+######################################################################
+
+signals.post_save.connect(create_profile, sender=User)
+signals.post_save.connect(create_profile, sender=Student)
