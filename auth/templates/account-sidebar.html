@@ -1,0 +1,10 @@
+     <!-- Account Management -->
+    <div class="side-nav sidebar-block">
+        <h2>Account</h2>
+        <ul>
+            <li><a href="{% url 'UserProfileView' %}">View Profile</a></li>
+            <!-- <li><a href="{# url 'EditProfileView' #}">Edit Profile</a></li> -->
+            <li><a href="{% url 'ChangePasswordView' %}">Change Password</a></li>
+            <li><a href="{% url 'LogoutView' %}">Log Out</a></li>
+        </ul>
+    </div>

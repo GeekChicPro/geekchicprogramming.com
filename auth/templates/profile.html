@@ -1,0 +1,48 @@
+{% extends 'page.html' %}
+
+{% block title %} GeekChic | {{ student.full_name|title }}{% endblock %}
+
+{% block stylesheet %}
+    {{ block.super }}
+    <style type="text/css">
+        i:before {
+            content: none !important;
+        }
+    </style>
+{% endblock %}
+
+{% block breadcrumb %}
+        <ul>
+            <!-- Add your breadcrumb navs as listitems here -->
+            <li class="home"><a href="/">Home</a></li>
+            <li>Accounts</li>
+            <li>{{ student.full_name }}</li>
+        </ul>
+{% endblock %}
+
+{% block article %}
+    
+    <div class="row" id="profile">
+        <div class="span2">
+            <img class="img-polaroid" alt="Gravatar" src="{{ student.gravatar }}" />
+        </div>
+        <div class="span7">
+            <h1>{{ student.full_name }}</h1>
+            <ul class="inline unstyled">
+                <li><i class="icon-user"></i> {{ student.username }}</li>
+                <li><i class="icon-envelope"></i> {{ student.email }}</li>
+            </ul>
+            {% if student.get_profile.shortbio %}
+            <p>{{ student.get_profile.shortbio }}</p>
+            {% else %}
+            <p>No Biography Yet</p>
+            {% endif %}
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block sidebar %}
+    <!-- ADD SIDEBAR WIDGETS HERE -->
+    {% include 'account-sidebar.html' %}    
+{% endblock %}

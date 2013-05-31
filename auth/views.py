@@ -18,6 +18,7 @@ __author__    = "Benjamin Bengfort <benjamin@bengfort.com>"
 import urlparse
 
 from django import http
+from models import Student
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -25,19 +26,29 @@ from django.views.generic import View, FormView, TemplateView
 from mixins import DispatchProtectionMixin, LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import authenticate, REDIRECT_FIELD_NAME, login, logout
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 
 ###########################################################################
 ## User Management Views
 ###########################################################################
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    
+    template_name = "profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        context['student'] = Student.fromUser(self.request.user)
+        return context
 
 class ChangePasswordView(LoginRequiredMixin, FormView):
     """
     A web view that allows the User to change their password. 
     """
 
-    form_class    = SetPasswordForm
+    form_class    = PasswordChangeForm
     template_name = "forms/change-password.html"
+    success_url   = "/accounts/profile/"
 
     def get_success_url(self):
         if self.success_url:
@@ -53,6 +64,11 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
         kwargs = super(ChangePasswordView, self).get_form_kwargs()
         kwargs.update({'user':self.request.user})
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangePasswordView, self).get_context_data(**kwargs)
+        context['student'] = Student.fromUser(self.request.user)
+        return context
 
 ###########################################################################
 ## Authentication Views

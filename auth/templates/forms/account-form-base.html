@@ -1,0 +1,15 @@
+{% extends "forms/form-base.html" %}
+
+{% block breadcrumb %}
+        <ul>
+            <!-- Add your breadcrumb navs as listitems here -->
+            <li class="home"><a href="/">Home</a></li>
+            <li>Accounts</li>
+            <li>{{ student.full_name }}</li>
+        </ul>
+{% endblock %}
+
+{% block sidebar %}
+    <!-- ADD SIDEBAR WIDGETS HERE -->
+    {% include 'account-sidebar.html' %}
+{% endblock %}
