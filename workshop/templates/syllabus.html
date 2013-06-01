@@ -1,112 +1,165 @@
-{% extends 'base.html' %}
+{% extends 'page.html' %}
 
 {% block title %}GeekChic | Workshop Syllabus{% endblock %}
 
-{% block main %}
-    <div id="main" class="container">
-        <div class="row"> 
-            <div class="span10 offset1">
-                <div class="page-header">
-                    <h2>Workshop Syllabus</h2>
-                </div>
-            </div>
-        </div>
+{% block stylesheet %}
+    {{ block.super }}
+    <style type="text/css">
+        body {
+            font-size: 14px;
+        }
 
-        <div class="row">
-            <div class="span10 offset1">
-                <h3>Goals</h3>
-                <ol>
-                    <li>Find that "Aha! I can do this!" moment.</li>
-                    <li>Learn how to learn how to code.</li>
-                </ol>
+        p.lead {
+            font-size: 15px;
+            margin: -10px 0 0 0;
+            font-style: italic;
+        }
 
-                <h3>Friday Evening</h3>
-                <p class="lead">Introductions and Installation</p>
+        h2 {
+            margin-top: 28px;
+        }
 
-                <h4>Schedule</h4>
-                <dl class="dl-horizontal dl-schedule">
-                    <dt>6:30 pm</dt>
-                        <dd>Meet and Greet</dd>
-                    <dt>6:40 pm</dt>
-                        <dd>Presentation: <em>{{ modules.one.presentation }}</em></dd>
-                    <dt>6:50 pm</dt>
-                        <dd>Workshop: <em>{{ modules.one.workshop }}</em></dd>
-                    <dt>7:30 pm</dt>
-                        <dd>Drinks and Networking</dd>
-                    <dt>8:30 pm</dt>
-                        <dd>Head home and rest!</dd>
-                </dl>
+        h3 {
+            line-height: 18px;
+        }
+    </style>
+{% endblock %}
 
-                <h4>Module One: {{ modules.one.name }}</h4>
-                <ul class="unstyled">
-                    <li>Presentation: <a href="{% url 'module' module='one' doctype='presentation' %}">{{ modules.one.presentation }}</a></li>
-                    <li>Workshop: <a href="{% url 'module' module='one' doctype='workshop' %}">{{ modules.one.workshop }}</a></li>
-                </ul>
+{% block breadcrumb %}
+    
+    <ul class="breadcrumbs">
+        <li class="home"><a href="/">Home</a></li>
+        <li>Workshops</li>
+        <li>Syllabus</li>
+    </ul>
 
-                <h3>Saturday Morning</h3>
-                <p class="lead">The Basics of Programming</p>
+{% endblock %}
 
-                <h4>Schedule</h4>
-                <dl class="dl-horizontal dl-schedule">
-                    <dt>9:00 am</dt>
-                        <dd>Presentation: Introduction by Josie</dd>
-                    <dt>9:20 am</dt>
-                        <dd>Presentation: <em>{{ modules.two.presentation }}</em></dd>
-                    <dt>9:35 am</dt>
-                        <dd>Workshop: <em>{{ modules.two.workshop }}</em></dd>
-                    <dt>10:00 am</dt>
-                        <dd>Presentation: <em>{{ modules.three.presentation }}</em></dd>
-                    <dt>10:45 am</dt>
-                        <dd>Workshop: <em>{{ modules.three.workshop }}</em></dd>
-                    <dt>11:45 am</dt>
-                        <dd>Lunch time!</dd>
-                </dl>
+{% block article %}
+        <h1>Workshop Syllabus</h1>
 
-                <h4>Module Two: The Command Line</h4>
-                <ul class="unstyled">
-                    <li>Presentation: <a href="{% url 'module' module='two' doctype='presentation' %}">{{ modules.two.presentation }}</a></li>
-                    <li>Workshop: <a href="{% url 'module' module='two' doctype='workshop' %}">{{ modules.two.workshop }}</a></li>
-                </ul>
+        <h2>Goals</h2>
+        <ol>
+            <li>Find that "Aha! I can do this!" moment.</li>
+            <li>Learn how to learn how to code.</li>
+        </ol>
 
-                <h4>Module Three: Programming Basics</h4>
-                <ul class="unstyled">
-                    <li>Presentation: <a href="{% url 'module' module='three' doctype='presentation' %}">Girl(name="Jane Doe").code()</a></li>
-                    <li>Workshop: <a href="{% url 'module' module='three' doctype='workshop' %}">Move over, Trinity</a></li>
-                </ul>
+        <h2>Friday Evening</h2>
+        <p class="lead">Introductions and Installation</p>
 
-                <h3><em>Lunch</em></h3>
+        <h3>Schedule</h3>
+        <dl class="dl-horizontal dl-schedule">
+            <dt>6:30 pm</dt>
+                <dd>Meet and Greet</dd>
+            <dt>6:40 pm</dt>
+                <dd>Presentation: <em>{{ modules.one.presentation }}</em></dd>
+            <dt>6:50 pm</dt>
+                <dd>Workshop: <em>{{ modules.one.workshop }}</em></dd>
+            <dt>7:30 pm</dt>
+                <dd>Drinks and Networking</dd>
+            <dt>8:30 pm</dt>
+                <dd>Head home and rest!</dd>
+        </dl>
 
-                <h3>Saturday Afternoon</h3>
-                <p class="lead">Web Applications</p>
+        <h3>Module One: {{ modules.one.name }}</h3>
+        <ul class="unstyled">
+            <li>Presentation: <a href="{% url 'module' module='one' doctype='presentation' %}">{{ modules.one.presentation }}</a></li>
+            <li>Workshop: <a href="{% url 'module' module='one' doctype='workshop' %}">{{ modules.one.workshop }}</a></li>
+        </ul>
 
-                <h4>Schedule</h4>
-                <dl class="dl-horizontal dl-schedule">
-                    <dt>12:45 pm</dt>
-                        <dd>Presentation: <em>{{ modules.four.presentation }}</em></dd>
-                    <dt>1:00 pm</dt>
-                        <dd>Workshop: <em>{{ modules.four.workshop }}</em></dd>
-                    <dt>2:00 pm</dt>    
-                        <dd>Presentation: <em>{{ modules.five.presentation }}</em></dd>
-                    <dt>2:45 pm</dt>
-                        <dd>Workshop: <em>{{ modules.five.workshop }}</em><dd>
-                    <dt>4:00 pm</dt>
-                        <dd>A hard days work deserves cold beer!</dd>
-                </dl>
+        <h2>Saturday Morning</h2>
+        <p class="lead">The Basics of Programming</p>
 
-                <h4>Module Four: The Web Front and HTML</h4>
-                <ul class="unstyled">
-                    <li>Presentation: <a href="{% url 'module' module='four' doctype='presentation' %}">{{ modules.four.presentation }}</a></li>
-                    <li>Workshop: <a href="{% url 'module' module='four' doctype='workshop' %}">{{ modules.four.workshop }}</a></li>
-                    <li>Cheat sheet: <a href="{% url 'module' module='four' doctype='handout' %}">{{ modules.four.handout }}</a></li>
-                </ul>
+        <h3>Schedule</h3>
+        <dl class="dl-horizontal dl-schedule">
+            <dt>9:00 am</dt>
+                <dd>Presentation: Introduction by Josie</dd>
+            <dt>9:20 am</dt>
+                <dd>Presentation: <em>{{ modules.two.presentation }}</em></dd>
+            <dt>9:35 am</dt>
+                <dd>Workshop: <em>{{ modules.two.workshop }}</em></dd>
+            <dt>10:00 am</dt>
+                <dd>Presentation: <em>{{ modules.three.presentation }}</em></dd>
+            <dt>10:45 am</dt>
+                <dd>Workshop: <em>{{ modules.three.workshop }}</em></dd>
+            <dt>11:45 am</dt>
+                <dd>Lunch time!</dd>
+        </dl>
 
-                <h4>Module Five: Writing a Web Application in Django</h4>
-                <ul class="unstyled">
-                    <li>Presentation: <a href="{% url 'module' module='five' doctype='presentation' %}">{{ modules.five.presentation }}</a></li>
-                    <li>Workshop: <a href="{% url 'module' module='five' doctype='workshop' %}">{{ modules.five.workshop }}</a></li>
-                </ul>
+        <h3>Module Two: The Command Line</h3>
+        <ul class="unstyled">
+            <li>Presentation: <a href="{% url 'module' module='two' doctype='presentation' %}">{{ modules.two.presentation }}</a></li>
+            <li>Workshop: <a href="{% url 'module' module='two' doctype='workshop' %}">{{ modules.two.workshop }}</a></li>
+        </ul>
 
-            </div>
-        </div>
+        <h3>Module Three: Programming Basics</h3>
+        <ul class="unstyled">
+            <li>Presentation: <a href="{% url 'module' module='three' doctype='presentation' %}">Girl(name="Jane Doe").code()</a></li>
+            <li>Workshop: <a href="{% url 'module' module='three' doctype='workshop' %}">Move over, Trinity</a></li>
+        </ul>
+
+        <hr />
+        <h2><em>Lunch</em></h2>
+        <hr />
+
+        <h2>Saturday Afternoon</h2>
+        <p class="lead">Web Applications</p>
+
+        <h3>Schedule</h3>
+        <dl class="dl-horizontal dl-schedule">
+            <dt>12:45 pm</dt>
+                <dd>Presentation: <em>{{ modules.four.presentation }}</em></dd>
+            <dt>1:00 pm</dt>
+                <dd>Workshop: <em>{{ modules.four.workshop }}</em></dd>
+            <dt>2:00 pm</dt>    
+                <dd>Presentation: <em>{{ modules.five.presentation }}</em></dd>
+            <dt>2:45 pm</dt>
+                <dd>Workshop: <em>{{ modules.five.workshop }}</em><dd>
+            <dt>4:00 pm</dt>
+                <dd>A hard days work deserves cold beer!</dd>
+        </dl>
+
+        <h3>Module Four: The Web Front and HTML</h3>
+        <ul class="unstyled">
+            <li>Presentation: <a href="{% url 'module' module='four' doctype='presentation' %}">{{ modules.four.presentation }}</a></li>
+            <li>Workshop: <a href="{% url 'module' module='four' doctype='workshop' %}">{{ modules.four.workshop }}</a></li>
+            <li>Cheat sheet: <a href="{% url 'module' module='four' doctype='handout' %}">{{ modules.four.handout }}</a></li>
+        </ul>
+
+        <h3>Module Five: Writing a Web Application in Django</h3>
+        <ul class="unstyled">
+            <li>Presentation: <a href="{% url 'module' module='five' doctype='presentation' %}">{{ modules.five.presentation }}</a></li>
+            <li>Workshop: <a href="{% url 'module' module='five' doctype='workshop' %}">{{ modules.five.workshop }}</a></li>
+        </ul>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <!-- ADD SIDEBAR WIDGETS HERE -->
+    
+    <!-- This is an example of a Link Block -->
+    <div class="side-nav sidebar-block">
+        <h2>Presentations</h2>
+        <ul>
+            <li><a href="{% url 'module' module='one' doctype='presentation' %}">{{ modules.one.presentation }}</a></li>
+             <li><a href="{% url 'module' module='two' doctype='presentation' %}">{{ modules.two.presentation }}</a></li>
+             <li><a href="{% url 'module' module='two' doctype='presentation' %}">{{ modules.two.presentation }}</a></li>
+            <li><a href="{% url 'module' module='four' doctype='presentation' %}">{{ modules.four.presentation }}</a></li>
+
+        </ul>
     </div>
+
+    <div class="side-nav sidebar-block">
+        <h2>Workshops</h2>
+        <ul>
+             <li><a href="{% url 'module' module='one' doctype='workshop' %}">{{ modules.one.workshop }}</a></li>
+             <li><a href="{% url 'module' module='two' doctype='workshop' %}">{{ modules.two.workshop }}</a></li>
+             <li><a href="{% url 'module' module='two' doctype='workshop' %}">{{ modules.two.workshop }}</a></li>
+             <li><a href="{% url 'module' module='four' doctype='workshop' %}">{{ modules.four.workshop }}</a></li>
+        </ul>
+    </div>
+
+            
+           
 {% endblock %}

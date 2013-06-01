@@ -2,29 +2,45 @@
 
 {% block title %}GeekChic | {{ workshop }}{% endblock %}
 
-{% block main %}
-    
-<div id="main" class="container">
-    <div class="row">
-        <div class="span10 offset1">
-            <div class="page-header">
-                <h2>{{ workshop }}</h2>
-                <ul class="breadcrumb">
-                    <li><a href="{% url 'syllabus' %}">{{ name }}</a> <span class="divider">&raquo;</span></li>
-                    <li><a href="{% url 'module' module=module doctype='presentation' %}">Presentation</a> <span class="divider">&middot;</span></li>
-                    <li class="active">Workshop</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+{% block stylesheet %}
+    {{ block.super }}
+    <style type="text/css">
+        body {
+            font-size: 15px;
+        }
+    </style>
+{% endblock %}
 
-    <div class="row">
-        <div class="span10 offset1">
-        {% block content %}
-        <p>TODO: Write</p>
-        {% endblock %}
+{% block main %}
+
+<!-- MAIN CONTENT AREA -->
+    <div id="main" class="main-content">
+        <div class="container">
+            <div class="row show-grid">
+                <div class="span10 offset1">
+                    <div class="page-header">
+                        <h2>{{ workshop }}</h2>
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'syllabus' %}">{{ name }}</a> <span class="divider">&raquo;</span></li>
+                            <li><a href="{% url 'module' module=module doctype='presentation' %}">Presentation</a> <span class="divider">&middot;</span></li>
+                            <li class="active">Workshop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONTENT AREA -->
+            <div class="row show-grid clear-both">
+                <div class="span10 offset1">
+                {% block content %}
+                <p>TODO: Write</p>
+                {% endblock %}
+                </div>
+            </div>
+            
+            <br />
+
         </div>
     </div>
-</div>
 
 {% endblock %}
