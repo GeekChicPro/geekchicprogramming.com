@@ -6,6 +6,7 @@
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/reveal.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/serif.css' %}" type="text/css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 {% endblock %}
 
 
@@ -49,9 +50,11 @@
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/head.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/reveal.js' %}"></script>
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             Reveal.initialize();
+            hljs.initHighlightingOnLoad();
         });
     </script>
 {% endblock %}

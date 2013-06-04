@@ -52,7 +52,9 @@
     {% endblock %}
 
     {% block article_image %}
+    {% if object.image %}
     <img alt="<{{ object.title }} Image>" src="{{ object.image.url }}" class="img-rounded" />
+    {% endif %}
     {% endblock %}
 
     {% block article_html_content %}

@@ -1,1 +1,88 @@
 {% extends 'presentation.html' %}
+{% load staticfiles %}
+
+{% block slides %}
+    <section> 
+        <section>
+            <h2 class="fragment" data-fragment-index="0">Hello, Django</h2>
+            <p><em>The web framework for perfectionists with deadlines</em></p>
+            <ul>
+                <li class="fragment" data-fragment-index="0">Created to manage news sites for The World Company</li>
+                <li class="fragment" data-fragment-index="1">Named after guitarist Django Reinhardt</li>
+                <li class="fragment" data-fragment-index="2">Inteded to help journalists meet fast deadlines</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>A Pulitzer!</h2>
+            <ul class="unstyled">
+                <li><a href="http://politifact.com/">Politifact</a>: fact checking in 2008 US Presidential Election</li>
+                <li>Lead developer was a former journalist</li>
+                <li>His first Django application</li>
+                <li><a href="http://www.mattwaite.com/posts/2007/aug/22/announcing-politifact/">http://www.mattwaite.com/posts/2007/aug/22/announcing-politifact/</a>
+            </ul>
+        </section>
+
+        <section>
+            <img width="600" src="{% static 'img/pressie/django-sites.png' %}" alt="Sites that use Django" />
+            <p><a href="http://www.djangosites.org/">and more...</a></p>
+        </section>
+    </section>
+
+    <section>
+        <section>
+            <h2>Principles</h2>
+            <ul>
+                <li>DRY (Don't repeat yourself)</li>
+                <li>Write less code</li>
+                <li>Make CRUD easy</li>
+                <li>Database Independent (Oracle, MySQL, PostgreSQL, SQLite)</li>
+                <li>Deployment neutral (Apache, Nginx)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li>Object-relational mapping (ORM)</li>
+                <li>Build In Admin interface</li>
+                <li>URL Design and Control</li>
+                <li>Hierarchical Template System</li>
+                <li>il8n and l10n for localization</li> 
+            </ul>
+        </section>
+    </section>
+
+    <section>
+        <img src="{% static 'img/pressie/django-architecture.png' %}" alt="Django Architecture" />
+    </section>
+
+    <section>
+        <section>
+            <h2>Model-Template-View (MVC, sorta)</h2>
+            <p class="fragment" data-fragment-index="0"><strong>Models:</strong> a thing that contains data (e.g. a blog post)</p>
+            <p class="fragment" data-fragment-index="1"><strong>Views:</strong> figure out what to show and process</p>
+            <p class="fragment" data-fragment-index="2"><strong>Templates:</strong> how things are displayed</p>
+        </section>
+        
+        <section>   
+            <h2>Models</h2>
+            <pre>
+
+    from django.db import models
+
+    class Blog(models.Model):
+    
+        title   = models.CharField( max_length=255 )
+        content = models.TextField( )
+        pubdate = mdoels.DateTimeField( )
+
+        class Meta:
+            db_table = "blog_posts"
+
+</pre></p>
+        </section>
+
+    </section>
+
+{% endblock %}
