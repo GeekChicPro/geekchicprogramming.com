@@ -1,0 +1,7 @@
+Django=1.5
+PIL=1.1.7
+Grappelli=2.4.6
+Django-Tagging=0.3
+Django-MPTT=0.5
+Django-Blog-Zinna=0.13
+Python-Markdown=2.3.1
