@@ -24,7 +24,9 @@
 
     <div class="post-item">
         <h2>{{ object.title }}</h2>
+		{% if object.image %}
         <img alt="{{ object.title }}" src="{{ object.image.url }}" />
+		{% endif %}
         <p class="post-description">
             {% if object.excerpt %}
             {{ object.excerpt|safe }}

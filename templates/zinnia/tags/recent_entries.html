@@ -1,10 +1,16 @@
 {% load i18n %}
+{% load staticfiles %}
 
                             <ul>
                                 {% for entry in entries %}
                                 <li>
                                     <a class="photo" href="{{ entry.get_absolute_url }}">
+										{% if entry.image %}
                                         <img class="entry-photo-thumbnail" alt="{{ entry.title }}" src="{{ entry.image.url }}" />
+										{% else %}
+										<img class="entry-photo-thumbnail" alt="{{ entry.title }}" src="{% static 'img/entry_image_holder.png' %}" />
+
+										{% endif %}
                                     </a>
                                     <p><a href="{{ entry.get_absolute_url }}" 
                                           title="{{ entry.title }}"
