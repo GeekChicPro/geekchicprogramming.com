@@ -161,3 +161,10 @@ LOGGING = {
         },
     }
 }
+
+# This file contains the settings that work for everyone.  
+# To override a setting create a settings_local.py file and put your overrides there.
+try:
+    from settings_local import *
+except ImportError:
+    pass
