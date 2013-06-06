@@ -132,7 +132,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'workshop',
-    'feedback'
+    'feedback',
+    'simplepage'
 )
 
 # A sample logging configuration. The only tangible logging
