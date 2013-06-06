@@ -1,7 +1,14 @@
-Django=1.5
-PIL=1.1.7
-Grappelli=2.4.6
-Django-Tagging=0.3
-Django-MPTT=0.5
-Django-Blog-Zinna=0.13
-Python-Markdown=2.3.1
+Django==1.5
+Markdown==2.3.1
+PIL==1.1.7
+argparse==1.2.1
+beautifulsoup4==4.2.0
+distribute==0.6.34
+-e git://github.com/Fantomas42/django-blog-zinnia.git@ed18a76887b934eb697be94dc7cf5bd3c866dc87#egg=django_blog_zinnia-dev
+-e git://github.com/sehmaschine/django-grappelli.git@b094e6204da0ac7242cbfa5321e1e2b28ddf688e#egg=django_grappelli-dev
+django-mptt==0.5.5
+django-tagging==0.3.1
+django-xmlrpc==0.1.5
+pyparsing==1.5.7
+pytz==2013b
+wsgiref==0.1.2
