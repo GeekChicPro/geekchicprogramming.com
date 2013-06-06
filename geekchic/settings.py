@@ -1,4 +1,5 @@
 # Django settings for geekchic project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -8,6 +9,10 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+# Get the absolute path for this project
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+ROOT_PATH = os.path.join(PROJECT_PATH, "..")
 
 DATABASES = {
     'default': {
@@ -111,6 +116,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(ROOT_PATH, 'templates')
 )
 
 INSTALLED_APPS = (
