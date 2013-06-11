@@ -26,6 +26,6 @@ tmp
 
 .idea
 
-settings.py
+settings_local.py
 
 media_tmp
