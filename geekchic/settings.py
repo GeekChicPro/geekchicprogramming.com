@@ -27,6 +27,7 @@ DATABASES = {
         'HOST': '',                      
         # Set to empty string for default.
         'PORT': '',                      
+	}
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
