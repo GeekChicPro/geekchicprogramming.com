@@ -21,6 +21,7 @@ from django import http
 from models import Student
 from django.conf import settings
 from django.contrib import messages
+from django.utils.http import base36_to_int
 from django.core.urlresolvers import reverse
 from django.views.generic import View, FormView, TemplateView
 from mixins import DispatchProtectionMixin, LoginRequiredMixin
@@ -284,7 +285,7 @@ class PasswordResetView(DispatchProtectionMixin, FormView):
     email_template   = "emails/password-reset-email.html"
     subject_template = "emails/password-reset-subject.txt"
     success_url      = None
-    from_email       = "Unbound Concepts <server@unboundconcepts.com>"
+    from_email       = "GeekChic Programming <geekchicpro@gmail.com>"
 
     def get_success_url(self):
         """
@@ -445,8 +446,8 @@ class PasswordResetConfirmView(DispatchProtectionMixin, FormView):
         assert uidb36 is not None and token is not None
         try:
             uid_int = base36_to_int(uidb36)
-            self.user = User.objects.get(id=uid_int)
-        except (ValueError, OverflowError, User.DoesNotExist):
+            self.user = Student.objects.get(id=uid_int)
+        except (ValueError, OverflowError, Student.DoesNotExist):
             self.user = None
 
         self.validlink = bool(self.user is not None and self.token_generator.check_token(self.user, token))
