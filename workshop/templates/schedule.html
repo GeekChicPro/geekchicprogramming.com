@@ -1,4 +1,5 @@
 {% extends 'page.html' %}
+{% load staticfiles %}
 
 {% block title %}GeekChic | Workshops {% endblock %}
 
@@ -59,7 +60,7 @@
 	<p>All Howard County residents can register online below. Make sure you select <strong>Noncredit/Continuing Education Students</strong> and then search for "geekchic."
 	</p>
 	 <p class="center"><a href="https://express.howardcc.edu/WebAdvisor/" title="Register for the workshop" class="btn btn-inverse">Register Now!</a></p>
-	 <p>Out of county and out of state students will need to download the pdf form <strong><a href="RegForm2010.pdf" target="_blank">here</a></strong> and follow the instructions (The Course Number is XE-635-8471 and the Course Name is "Turn Geek to Chic Programming")</p>
+	 <p>Out of county and out of state students will need to download the pdf form <strong><a href="{% static 'pdf/HCCRegForm2010.pdf' %}" target="_blank">here</a></strong> and follow the instructions (The Course Number is XE-635-8471 and the Course Name is "Turn Geek to Chic Programming")</p>
 
 	<h3>Why should YOU learn to program?</h3>
 	<p>GeekChic Programming encourages women to transform technology by applying the skills they learn in our programming workshops and classes to explore innovative solutions to real-world problems. Over the last three years, President Obama has continued to emphasize the importance of STEM in education reform. The White House is committed to expanding STEM education and career opportunities for underrepresented groups, including women and girls, and the global job marketplace shows that these technical skills are in extremely high demand. There is a demonstrated need for women in the fields of science, technology, engineering, and math, and software is at the center of every STEM project.</p>
