@@ -17,16 +17,16 @@ ROOT_PATH = os.path.join(PROJECT_PATH, "..")
 DATABASES = {
     'default': {
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'ENGINE': 'django.db.backends.sqlite3', 
+        'ENGINE': 'django.db.backends.sqlite3',
         # Or path to database file if using sqlite3.
         'NAME': os.path.join(PROJECT_PATH, 'geekchic.db'),
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
         # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'HOST': '',                      
+        'HOST': '',
         # Set to empty string for default.
-        'PORT': '',                      
+        'PORT': '',
 	}
 }
 
@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'followers',
     'feedback',
     'simplepage',
+    'events',
     'tagging',
     'mptt',
     'zinnia',
@@ -201,7 +202,7 @@ TWITTER_CONSUMER_SECRET = ""
 TWITTER_ACCESS_KEY = ""
 TWITTER_ACCESS_SECRET = ""
 
-# This file contains the settings that work for everyone.  
+# This file contains the settings that work for everyone.
 # To override a setting create a settings_local.py file and put your overrides there.
 try:
     from settings_local import *

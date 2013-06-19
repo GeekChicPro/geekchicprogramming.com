@@ -1,0 +1,33 @@
+{% extends 'events-base.html' %}
+
+{% block content %}
+
+    <h1>GeekChic Programs and Events</h1>
+    <p class="lead">GeekChic provides a variety of programs and events, so that you can find the right place to learn how to code!</p>
+
+    <h2><a href="{% url 'WorkshopSchedule' %}">Get GeekChic Workshops</a></h2>
+    <p>These weekend workshops target potential GeekChic Programming students seeking an introduction to code. The all-female demographic provides a comfortable environment for women to network, learn about computer programming, and see if computer science may be a field they’re interested in pursuing - all without the traditional barriers to entry. In just one weekend, we’ll introduce a new development skill, demonstrate the command line, and start coding!</p>
+
+    <h2><a href="{% url 'BootcampSchedule' %}">Code GeekChic Bootcamps</a></h2>
+    <p>Our two-week bootcamps are designed as more advanced workforce training programs for women actively seeking a leg up in their field. Participants should come prepared to dive into the Linux Terminal, Python, Databases, Django, HTML, CSS, WordPress, and JavaScript with a focus on design and development of a complete web application. By the end of bootcamp, you will have a snazzy new program to show off your freshly honed programming skills.</p>
+
+    <h2><a href="{% url 'FellowshipSchedule' %}">Fulltime GeekChic Fellowships</a></h2>
+    <p>The 10-week fellowship program is designed for women pursuing the technical skills to drive a career change or launch their own business. GeekChic Programming lays the foundation for understanding development and technology in a more general sense and prepares students to enter the technology industry and continue learning new things, as all good developers do. At the end of the program, each cohort of lady coders has the skills they need to land job offers from local start-ups, existing organizations, and government contractors looking to expand their technology teams.</p>
+
+    <p class="lead">Click on the links above to find upcoming events and register!</p>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <!-- Programs Links -->
+    <div class="side-nav sidebar-block">
+        <h2>Program Details</h2>
+        <ul>
+            <li><a href="{% url 'WorkshopSchedule' %}">Workshops</a></li>
+            <li><a href="{% url 'BootcampSchedule' %}">Bootcamps</a></li>
+            <li><a href="{% url 'FellowshipSchedule' %}">Fellowships</a></li>
+        </ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'events-base.html' %}
+
+{% block event_breadcrumb %}
+                <li>GeekChic Workshops</li>
+{% endblock %}
+
+{% block content %}
+    <h1>GeekChic Workshops</h1>
+    <p class="lead">Whether you're a beginner or looking to learn a new programming skill- GeekChic has a variety of workshops designed to provide snippets of knowledge in an environment designed to encourage women to participate.</p>
+
+    <h2>Get GeekChic</h2>
+    <p>These weekend workshops target potential GeekChic Programming students seeking an introduction to code. The all-female demographic provides a comfortable environment for women to network, learn about computer programming, and see if computer science may be a field they’re interested in pursuing - all without the traditional barriers to entry. In just one weekend, we’ll introduce a new development skill, demonstrate the command line, and start coding!</p>
+
+    <h2>GeekChic Seminars</h2>
+    <p>These workshops take place on evenings and weekends, convienient for your busy schedule. They provide specific instruction and discussion on a topic related to technology and are intended for beginner and intermediate programmers. Many seminars are coed, but in order to encourage women to participate, we provide them a significantly decreased cost.</p>
+
+    <h2>Upcoming Workshops</h2>
+    <p>Find an event that's perfect for you! Comming up soon:</p>
+    <ul class="unstyled">
+        {% for item in object_list %}
+        <li>{{ item.start_date|date }}: <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> at {{ item.location }}</li>
+        {% empty %}
+        <li>Nothing planned yet!</li>
+        {% endfor %}
+    </ul>
+
+    {% if paginator.num_pages > 1 %}
+    <ul class="pager">
+        {% if page_obj.has_previous %}
+        <li class="previous">
+            <a href="?page={{ page_obj.previous_page_number }}">&larr; Sooner</a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li class="next">
+            <a href="?page={{ page_obj.next_page_number }}">&rarr; Later</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+    <hr />
+
+    <h2>Why should YOU learn to program?</h2>
+    <p>GeekChic Programming encourages women to transform technology by applying the skills they learn in our programming workshops and classes to explore innovative solutions to real-world problems. Over the last three years, President Obama has continued to emphasize the importance of STEM in education reform. The White House is committed to expanding STEM education and career opportunities for underrepresented groups, including women and girls, and the global job marketplace shows that these technical skills are in extremely high demand. There is a demonstrated need for women in the fields of science, technology, engineering, and math, and software is at the center of every STEM project.</p>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ block.super }}
+{% endblock %}

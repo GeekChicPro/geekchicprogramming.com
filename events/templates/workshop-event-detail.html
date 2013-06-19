@@ -1,0 +1,101 @@
+{% extends 'events-base.html' %}
+
+{% block title %}GeekChic | {{ object }}{% endblock %}
+{% block keywords %}{% if object.keywords %}{{ object.keywords }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block event_breadcrumb %}
+                <li><a href="{% url 'WorkshopSchedule' %}">GeekChic Workshops</a></li>
+                <li>{{ object }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>GeekChic Workshops</h1>
+    <h2>{{ object.title }}</h2>
+
+    {{ object.to_html|safe }}
+
+    <hr />
+
+    {% if object.teachers.all %}
+    <div class="teaching">
+        <h3>Who's Teaching?</h3>
+        {% for teacher in object.teachers.all %}
+        <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+        <p>{{ teacher.get_profile.biography }}</p>
+        {% endfor %}
+        {% endif %}
+
+        {% if object.assistants.all %}
+        <h4>Teaching Assistants</h4>
+        {% for assistant in object.assistants.all %}
+        <h5>{{ assistant.first_name }} {{ assistant.last_name }}</h5>
+        <p>{{ assistant.get_profile.biography }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <h3>Cost</h3>
+    <p>{{ object.price_text }}</p>
+
+    <h3>Location</h3>
+    <div id="map-canvas"></div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <!-- Workshop Meta -->
+    <div class="sidebar-block">
+        <h2>Workshop Details</h2>
+        <ul class="unstyled">
+            <li><i class="icon-calendar"></i>  {{ object.start_date }}</li>
+            <li>Cost: {{ object.price_text }}</li>
+        </ul>
+        <h3>Location</h3>
+        {{ object.location.to_html|safe }}
+    </div>
+
+    {{ block.super }}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <!-- Add Google Maps to Page -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript">
+        var map;
+        var geocoder;
+        var addr = '{{ object.location.to_sline }}';
+        console.log(addr);
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var mapOptions = {
+                zoom: 14,
+                center: new google.maps.LatLng(-34.397, 150.644),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            codeAddress();
+        }
+
+        function codeAddress() {
+            geocoder.geocode( { 'address': addr }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    console.log("Geocode was not successful: " + status);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+{% endblock %}

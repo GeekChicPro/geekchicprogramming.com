@@ -1,0 +1,42 @@
+{% extends 'page.html' %}
+
+{% block title %}GeekChic | Schedule of Events{% endblock %}
+
+{% block breadcrumb %}
+            <ul>
+                <!-- Add your breadcrumb navs as listitems here -->
+                <li class="home"><a href="/">Home</a></li>
+                <li><a href="{% url 'EventSchedule' %}">Programs</a></li>
+                {% block event_breadcrumb %}{% endblock %}
+            </ul>
+{% endblock %}
+
+{% block sidebar %}
+
+    <!-- Upcoming Events -->
+    <div class="side-nav sidebar-block">
+        <h2>Upcoming {{ event_type }}{{ upcoming_events|pluralize }}</h2>
+        <ul>
+            {% for event in upcoming_events %}
+            <li><a href="{{ event.get_absolute_url }}"><strong>{{ event.start_date|date }}</strong> at {{ event.location }}</a></li>
+            {% empty %}
+            <li>There are no upcoming events scheduled.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if previous_events %}
+    <!-- Past Events -->
+    <div class="side-nav sidebar-block">
+        <h2>Past {{ event_type }}{{ previous_events|pluralize }}</h2>
+        <ul>
+            {% for event in previous_events %}
+            <li><a href="{{ event.get_absolute_url }}"><strong>{{ event.start_date|date }}</strong> at {{ event.location }}</a></li>
+            {% empty %}
+            <li>No previous events</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+{% endblock %}

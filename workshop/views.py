@@ -1,6 +1,8 @@
-from django.views.generic import TemplateView
+
 from django.http import Http404
 from auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, RedirectView
+from django.core.urlresolvers import reverse, NoReverseMatch
 
 MODULES = {
     'one': {
@@ -31,9 +33,12 @@ MODULES = {
     },
 }
 
-class ScheduleView(TemplateView):
-    
-    template_name = "schedule.html"
+class ScheduleView(RedirectView):
+
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse("WorkshopSchedule")
 
 class SyllabusView(LoginRequiredMixin, TemplateView):
 

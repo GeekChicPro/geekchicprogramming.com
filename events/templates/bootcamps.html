@@ -1,0 +1,24 @@
+{% extends 'events-base.html' %}
+
+{% block event_breadcrumb %}
+                <li>GeekChic Bootcamps</li>
+{% endblock %}
+
+{% block content %}
+
+    <h1>GeekChic Bootcamps</h1>
+    <p class="lead">Bootcamps are a more intensive 10 day introduction to programming or particular topics in technology. They're designed for you to jump quickly into programming and get a running start in new fields.</p>
+
+    <h2>Code GeekChic</h2>
+    <p>Our two-week bootcamps are designed as more advanced workforce training programs for women actively seeking a leg up in their field. Participants should come prepared to dive into the Linux Terminal, Python, Databases, Django, HTML, CSS, WordPress, and JavaScript with a focus on design and development of a complete web application. By the end of bootcamp, you will have a snazzy new program to show off your freshly honed programming skills.</p>
+
+    <div class="alert alert-note">
+        <h2>Stay Tuned!</h2>
+        <p class="text-inverse">We're currently setting up our Bootcamps project, we're looking for teachers and students. If you're interested in teaching or think you can get a group together for a particular topic, please <a href="{% url 'contact' %}">get in touch!</a></p>
+    </div>
+
+    <hr />
+
+    <h2>Why should YOU learn to program?</h2>
+    <p>GeekChic Programming encourages women to transform technology by applying the skills they learn in our programming workshops and classes to explore innovative solutions to real-world problems. Over the last three years, President Obama has continued to emphasize the importance of STEM in education reform. The White House is committed to expanding STEM education and career opportunities for underrepresented groups, including women and girls, and the global job marketplace shows that these technical skills are in extremely high demand. There is a demonstrated need for women in the fields of science, technology, engineering, and math, and software is at the center of every STEM project.</p>
+{% endblock %}

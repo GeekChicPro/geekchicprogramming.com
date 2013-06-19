@@ -21,7 +21,7 @@
                 </div>
 
             </div>
-            
+
             <!-- Primary Navigation -->
             <div class="container">
                 <div class="navbar">
@@ -36,12 +36,21 @@
                                         <i>geekchic home</i>
                                     </a></li>
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#programsMenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'EventSchedule' %}">
                                             PROGRAMS
                                             <i>find your fit</i>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{% url 'schedule' %}">Workshops</a></li>                                                  </ul>
+                                            <li>
+                                                <a href="{% url 'WorkshopSchedule' %}">Workshops</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'BootcampSchedule' %}">Bootcamps</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'FellowshipSchedule' %}">Fellowships</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#studentsMenu">
