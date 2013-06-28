@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+    {{ block.super }}
+    <style type="text/css">
+        form label {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #555;
+        }
+
+        form label.radio, form label.checkbox {
+            font-weight: normal;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form h2 {
+            text-align: left;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        form p {
+            text-align: left;
+        }
+
+        .importantDates dt {
+            width: 100px;
+            text-align: left;
+        }
+
+        .importantDates dd {
+            margin-left: 110px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block main %}
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <div class="container">
+            <hr style="color: white;" />
+            <div class="row show-grid clear-both">
+                <div class="span8 offset2">
+                    <h1>GeekChic Fellowship Application</h1>
+                    <h2>We're so glad you're applying!</h2>
+                    <p>The application below is designed for us to get to know you better and to select the perfect group of students for each of our cohorts. We will review your application and respond to let you know if you have been selected for an interview within a few short weeks. Interviews with short-listed applicants will be conducted over Google Hangouts as a final stage in the application.</p>
+
+                    {% if fellowships %}
+                    <div class="row">
+                        <div class="span4">
+                            {% for fellowship in fellowships %}
+                            <h3>Important Dates for {{ fellowship.semester }}</h3>
+                            <dl class="importantDates dl-horizontal">
+                                <dt>{{ fellowship.earlyapply|date }}</dt><dd>Early Application Deadline</dd>
+                                <dt>{{ fellowship.earlydecide|date }}</dt><dd>Early Decision</dd>
+                                <dt>{{ fellowship.deadline|date }}</dt><dd>Application Deadline</dd>
+                                <dt>{{ fellowship.decision|date }}</dt><dd>Final Decision</dd>
+                            </dl>
+                        </div>
+                        <div class="span4">
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <form method="post" id="applicationForm">
+                        <fieldset>
+
+                            <!--- Use this alerts div to put any alerts -->
+                            <div id="alerts">
+                            {% if form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <h2>Whoops!</h2>
+                                    <p>{{ error }}<p>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            {% for field in form %}
+                            <div class="control-group {% if field.errors %}error{% endif%}">
+                                <label for="{{field.id_for_label}}" class="control-label">{{field.label}}</label>
+                                <span class="help-block">{{ field.help_text }}</span>
+                                <div class="controls">
+                                    {{ field }}
+                                    {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <span class="help-inline">{{error}}</span>
+                                    {% endfor %}
+                                    {% else %}
+                                    <span class="help-inline"></span>
+                                    {% endif %}
+                                    <!-- <p class="help-block">{{ field.help_text }}</p> -->
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <fieldset>
+                                <legend>Application Fee</legend>
+                                <p class="help-block">Why is there an application fee?! We would like you to pay a minor fee to apply to this course so that we can make sure that applicants are serious about attending- a ten week course is a serious commitment! We're going to put some work into ensuring we create an excellent cohort. However, in exchange for this fee, you will receive a credit to one of our Workshops- that way we can meet you in person! If you've already attended a workshop, please let us know so we can get you a discount code.</p>
+                                <p><strong>Actually, until July 31, 2013 there will be no fee- so apply now!</strong></p>
+                            </fieldset>
+
+                            <div class="form-actions">
+                                <button class="btn btn-inverse" type="submit">Submit</button>
+                                <button class="btn" type="reset">Cancel</button>
+                                {% csrf_token %}
+                            </div>
+                        </fieldset>
+                    </form>
+                    {% else %}
+
+                    <p class="text-warning">No fellowships are available to apply to currently.</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <hr />
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript">
+        // TODO: Add Javascript based validation to this form.
+        jQuery.noConflict();
+        (function($) {
+            $(document).ready(function() {
+
+                var submitBtn  = $("form#applicationForm button[type=submit]");
+                var resetBtn = $("form#applicationForm button[type=reset]");
+
+                submitBtn.data('loading-text', 'Submitting Application...');
+                resetBtn.data('loading-text', 'Reset');
+
+                submitBtn.click(function(event) {
+                    submitBtn.button('loading');
+                    resetBtn.button('loading');
+                });
+            });
+        })(jQuery);
+    </script>
+{% endblock %}

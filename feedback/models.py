@@ -7,7 +7,7 @@ class Feedback(models.Model):
     """
     @note: Not currently used in geekchicprogramming.com
     """
-    
+
     CATEGORIES = (
         ('I', 'Information'),
         ('R', 'Request'),

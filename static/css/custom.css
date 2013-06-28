@@ -4,6 +4,10 @@
 
 .tweets-slide .slides li p{ color: #fff; padding: 0; margin: 0;}
 
+div.recent-tweets {
+    min-height: 30px;
+}
+
 /* Default */
 @media (min-width: 980px) {
     .three-columns-central {

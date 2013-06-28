@@ -1,0 +1,8 @@
+Hello GeekChic Team,
+
+We've received an application!
+
+{{ application.pprint }}
+
+Best,
+The GeekChic Server

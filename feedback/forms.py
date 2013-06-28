@@ -18,17 +18,17 @@ CC_EMAIL_TEXT_TEMPLATE = "emails/cc-email.txt"
 class BootstrapCheckboxInput(forms.widgets.CheckboxInput):
 
     def __init__(self, *args, **kwargs):
-        
+
         self.choice_label = kwargs.pop('choice_label', '')
         super(BootstrapCheckboxInput, self).__init__(*args, **kwargs)
-    
+
     def render(self, name, value, attrs=None):
         tag = super(BootstrapCheckboxInput, self).render(name, value, attrs)
         return mark_safe(u'<label class="checkbox">%s %s</label>' % (tag, self.choice_label))
 
 class ContactForm(forms.Form):
-    
-    sender  = forms.CharField(max_length=100) 
+
+    sender  = forms.CharField(max_length=100)
     email   = forms.EmailField()
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea(attrs={'rows':'12'}))
@@ -36,13 +36,13 @@ class ContactForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
-        
+
         for field_help in FIELDS_HELP:
             self.fields[field_help[0]].help_text = field_help[1]
             self.fields[field_help[0]].widget.attrs.update({'class':'input-xxlarge'})
 
     def clean_subject(self):
-        
+
         subject = self.cleaned_data.get('subject', '').strip()
         return "GeekChic Contact: %s" % subject
 
@@ -72,7 +72,7 @@ class ContactForm(forms.Form):
         # If a copy was requested to be sent to the user, send it.
         if ccsender:
 
-            from_email = "%s <%s>" % (sender, email) 
+            from_email = "%s <%s>" % (sender, email)
 
             ccnotifier = TemplateNotifier( subject=subject,
                                          recipients=(from_email,),

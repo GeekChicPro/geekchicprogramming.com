@@ -108,6 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.request',
 	'django.core.context_processors.media',
 	'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
 	'zinnia.context_processors.version',
 )
 
@@ -149,6 +150,7 @@ INSTALLED_APPS = (
     'feedback',
     'simplepage',
     'events',
+    'apply',
     'tagging',
     'mptt',
     'zinnia',

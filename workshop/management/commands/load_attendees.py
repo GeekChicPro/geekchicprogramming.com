@@ -1,28 +1,23 @@
 import os
 import csv
-import random
-import string
 
-from auth.models import User
+from auth.models import Student
 from optparse import make_option
 from django.db import connection
+from auth.utils import generate_password
 from auth.notify import send_registration
 from django.core.management.base import LabelCommand, CommandError
 
 class Command(LabelCommand):
-   
+
     label = "Attendees CSV"
-    
+
     option_list = LabelCommand.option_list + (
         make_option('-p', action='store', default=7, type='int', dest='password_length',
             help='Set the length of the generated password'),
         make_option('-e', '--noemail', action='store_true', dest='noemail',
             help='Do not notify users by email'),
     )
-
-    def generate_password(self, length=7):
-        passwd = [random.choice(string.letters) for x in xrange(0, length+1)]
-        return "".join(passwd)
 
     def expand_path(self, path):
         path = os.path.expanduser(path)
@@ -31,24 +26,20 @@ class Command(LabelCommand):
         return path
 
     def create_user(self, first_name, last_name, email):
-        first_name = first_name.title()
-        last_name  = last_name.title()
-        password = self.generate_password(self.password_length)
-        username = first_name[0] + last_name
-        username = username.lower()
+        password = generate_password()
+        student  = Student.objects.create_with_username(
+                        first_name= first_name.title(),
+                        last_name = last_name.title(),
+                        email     = email.lower(),
+                        password  = password)
 
         if self.verbosity > 1:
-            print "%s %s <%s>" % (first_name, last_name, email)
-            print "U: %s P: %s" % (username, password)
-
-        new_user = User.objects.create_user(username, email, password)
-        new_user.first_name = first_name
-        new_user.last_name  = last_name
-        new_user.save()
+            print student.full_email
+            print "U: %s P: %s" % (student.username, password)
 
         self.count += 1
 
-        return new_user, password
+        return student, password
 
     def notify_user(self, user, password=None):
         success = send_registration(user, password)
@@ -60,7 +51,7 @@ class Command(LabelCommand):
                 print "Could not send email!!"
 
     def handle(self, *args, **options):
-        
+
         # Handle Options
         self.password_length = options.get('password_length', 7)
         self.verbosity = int(options.get('verbosity'))
@@ -84,7 +75,7 @@ class Command(LabelCommand):
             print "%i users created, %i errors" % (self.count, self.errors)
 
     def handle_label(self, path, **options):
-        
+
         with open(path, 'r') as data:
             for row in csv.reader(data, delimiter='\t'):
                 try:

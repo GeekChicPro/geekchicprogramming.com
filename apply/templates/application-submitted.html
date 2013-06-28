@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+    {{ block.super }}
+    <style type="text/css">
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        p.notice {
+            text-align: center;
+        }
+
+    </style>
+{% endblock %}
+
+{% block main %}
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <div class="container">
+            <hr style="color: white;" />
+            <div class="row show-grid clear-both">
+                <div class="span8 offset2">
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.level == 50 %}
+                    <h1{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h1>
+                    {% else %}
+                    <p class="notice{% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    <h1>After Application Submission</h1>
+                    <h2>Please use our <a href="{% url 'apply' %}">application form</a> to apply.</h2>
+                    <p>Have you gotten to this page without submitting an application? If you're having trouble, please <a href="{% url 'contact' %}">contact us</a> and we'll immediately take a look into what happened. <strong>For developers:</strong> this page should be generated from the application, using Django's messaging contrib app (pass a message from the form).</p>
+                    {% endif %}
+                    <h2>So what happens next?</h2>
+                    <p>Now that we've received your application, we'll review it very carefully over the next couple of weeks. Depending on how close to the application deadline you've submitted, we will quickly let you know how your application is progressing. Please don't hesitate to <a href="{% url 'contact' %}">contact us</a> if you have any questions.</p>
+                    <p>If you're shortlisted as a potential candidate, we'll do a short interview via Google Hangouts. You'll meet with the teachers and some of the staff of GeekChic, and we'll both get to know each other. After all, a 10 week commitment means we should get to know each other first! Cohort decisions will be mailed out on the decision dates listed for the fellowship.</p>
+                    <h2>How do you choose?</h2>
+                    <p>Applications are slightly competitive, but it isn't for that reason that we have an application process. Instead, we're trying to build fellowship cohorts that will interact well together. The biggest factor is space, and our class sizes are limited to provide you the best, most personalized instruction possible. The application simply serves as an alternative to a first-come, first-serve selection basis.</p>
+                    <p>If you didn't get selected for a particular fellowship semester, please apply again for a future one. We'd also be happy to speak with you individually about why we could not select you. But honestly, don't worry about that yet, you've only just applied!</p>
+                </div>
+            </div>
+
+            <hr />
+
+        </div>
+    </div>
+
+{% endblock %}

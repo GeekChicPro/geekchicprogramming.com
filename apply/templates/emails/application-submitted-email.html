@@ -1,0 +1,12 @@
+<p>Hello {{ user.full_name }},</p>
+
+<p>Thank you for your application, we will review it soon! For reference, we've attached your application bellow.</p>
+
+<hr />
+
+{{ application.pprint_html|safe }}
+
+<hr />
+
+<p>Best Regards,<br />
+The GeekChic Team</p>

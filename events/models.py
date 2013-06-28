@@ -11,7 +11,7 @@ class Event(models.Model):
     slug       = models.SlugField( max_length=255, unique_for_date='start_date' )
     start_date = models.DateTimeField()
     end_date   = models.DateTimeField()
-    location   = models.ForeignKey("Location", related_name="events")
+    location   = models.ForeignKey("Location", related_name="+")
     keywords   = TagField()
     created    = models.DateTimeField( auto_now_add=True )
     updated    = models.DateTimeField( auto_now=True )
@@ -25,18 +25,6 @@ class Event(models.Model):
         Returns an interable list of tags.
         """
         return parse_tag_input(self.keywords)
-
-    @models.permalink
-    def get_absolute_url(self):
-        start_date = self.start_date
-        if timezone.is_aware(start_date):
-            start_date = timezone.localtime(start_date)
-        return ('WorkshopEventDetail', (), {
-                'year': start_date.strftime('%Y'),
-                'month': start_date.strftime('%m'),
-                'day': start_date.strftime('%d'),
-                'slug': self.slug,
-            })
 
     def __unicode__(self):
         return self.title
@@ -59,8 +47,39 @@ class Workshop(Event):
         formatter = Markdown()
         return formatter.convert(self.content)
 
+    @models.permalink
+    def get_absolute_url(self):
+        start_date = self.start_date
+        if timezone.is_aware(start_date):
+            start_date = timezone.localtime(start_date)
+        return ('WorkshopEventDetail', (), {
+                'year': start_date.strftime('%Y'),
+                'month': start_date.strftime('%m'),
+                'day': start_date.strftime('%d'),
+                'slug': self.slug,
+                })
+
     def __unicode__(self):
         return "%s at %s" % (self.title, self.location.name)
+
+class Fellowship(Event):
+
+    content     = models.TextField( help_text="Enter text in Markdown format.")
+    semester    = models.CharField( max_length=255, help_text="e.g. Fall 2013" )
+    teachers    = models.ManyToManyField('auth.User', related_name="fellowships_teaching", blank=True)
+    assistants  = models.ManyToManyField('auth.User', related_name="fellowships_assisting", blank=True)
+    deadline    = models.DateTimeField()
+    decision    = models.DateTimeField()
+    earlyapply  = models.DateTimeField()
+    earlydecide = models.DateTimeField()
+    full_price  = models.DecimalField( max_digits=7, decimal_places=2 )
+    early_price = models.DecimalField( max_digits=7, decimal_places=2 )
+    enrolled    = models.ManyToManyField('auth.Student', related_name="enrolled", blank=True)
+
+    def __unicode__(self):
+        start = self.start_date.strftime("%B %d")
+        end   = self.end_date.strftime("%B %d, %Y")
+        return "%s (%s - %s)" % (self.semester, start, end)
 
 class Location(models.Model):
 

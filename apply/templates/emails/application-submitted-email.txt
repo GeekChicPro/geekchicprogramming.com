@@ -1,0 +1,8 @@
+Hello {{ user.full_name }},
+
+Thank you for your application, we will review it soon! For reference, we've attached your application bellow.
+
+{{ application.pprint }}
+
+Best Regards,
+The GeekChic Team

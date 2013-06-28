@@ -32,6 +32,18 @@ class StudentProfile(models.Model):
         email = "%s <%s>" % (self.full_name, self.user.email)
         return email.strip()
 
+    def get_link(self, name):
+        """
+        Fetches a link via the type, if the link doesn't exist, then it
+        returns None -- note an error is rasied if the name isn't in the
+        SOCIAL_LINK_TYPES below.
+        """
+        link_type = StudentLink.type_from_name(name)
+        try:
+            return StudentLink.objects.get(profile=self, target=link_type)
+        except StudentLink.DoesNotExist:
+            return None
+
     def delete(self, using=None):
         self.user.delete(using=using)
         super(StudentProfile, self).delete(using=using)
@@ -61,6 +73,8 @@ SOCIAL_LINK_TYPES = (
     ("V", "Vimeo"),
     ("Y", "Yahoo"),
     ("YT", "YouTube"),
+    ("GH", "Github"),
+    ("O", "Other"),
 )
 
 class StudentLink(models.Model):
@@ -68,6 +82,16 @@ class StudentLink(models.Model):
     profile = models.ForeignKey( StudentProfile, related_name="links" )
     href    = models.URLField( verbose_name="URL" )
     target  = models.CharField( max_length=2, choices=SOCIAL_LINK_TYPES )
+
+    # To reverse link type from names
+    _name_link_map = dict([(ltype[1].lower(), ltype[0]) for ltype in SOCIAL_LINK_TYPES])
+
+    @classmethod
+    def type_from_name(klass, name):
+        name = name.lower()
+        if name not in klass._name_link_map:
+            raise KeyError("'%s' is not in the SOCIAL_LINK_TYPES enumeration" % name)
+        return klass._name_link_map[name]
 
     def get_css_class(self):
         target = self.get_target_display().lower().replace(" ", "_")
@@ -83,6 +107,7 @@ class StudentLink(models.Model):
         db_table = "auth_profile_link"
         verbose_name = _('link')
         verbose_name_plural = _('links')
+        unique_together = (("profile", "target"),)
 
 ######################################################################
 ## Django User Model Proxy

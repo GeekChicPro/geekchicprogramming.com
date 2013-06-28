@@ -22,7 +22,7 @@
         </div>
         {% endfor %}
     {% endif %}
-    
+
     {{ block.super }}
 {% endblock %}
 
@@ -36,9 +36,9 @@
 {% block form_reset_label %}Reset{% endblock %}
 
 {% block sidebar %}
-    
+
     <!-- ADD SIDEBAR WIDGETS HERE -->
-    
+
     <!-- This is an example of a Link Block -->
     <div class="side-nav sidebar-block">
         <h2>About GeekChic</h2>
@@ -57,10 +57,10 @@
         jQuery.noConflict();
         (function($) {
             $(document).ready(function() {
-                
+
                 var sendBtn  = $("form#contactForm button[type=submit]");
                 var resetBtn = $("form#contactForm button[type=reset]");
-                
+
                 sendBtn.data('loading-text', 'Sending...');
                 resetBtn.data('loading-text', 'Reset');
 
