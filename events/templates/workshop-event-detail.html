@@ -38,6 +38,7 @@
     <p>{{ object.price_text }}</p>
 
     <h3>Location</h3>
+    <div style="display: none;" id="location">{{ object.location.to_html|safe }}</div>
     <div id="map-canvas"></div>
 
 {% endblock %}
@@ -87,8 +88,19 @@
                     map.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                         map: map,
-                        position: results[0].geometry.location
+                        position: results[0].geometry.location,
+                        title: '{{ object.location }}'
                     });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: document.getElementById('location').innerHTML
+                    });
+                    infowindow.open(map, marker);
+
+                    // Set marker click event listener
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.open(map, marker);
+                    })
+
                 } else {
                     console.log("Geocode was not successful: " + status);
                 }

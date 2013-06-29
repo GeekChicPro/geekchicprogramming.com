@@ -119,8 +119,15 @@ div.article-body p {
 }
 
 div#map-canvas {
-    min-height: 300px;
+    min-height: 420px;
     margin-bottom: 22px;
+}
+
+div#map-canvas img {
+    vertical-align: none;
+    max-width: none;
+    max-height: none;
+    border: none;
 }
 
 div.teaching h4 {
