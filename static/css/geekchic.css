@@ -136,3 +136,95 @@ div.teaching h4 {
     line-height: 18px;
     margin-bottom: 0.6em;
 }
+
+.icon-blogger {
+    background-image: url("/static/img/link_icons/blogger.png");
+}
+
+.icon-delicious {
+    background-image: url("/static/img/link_icons/delicious.png");
+}
+
+.icon-digg {
+    background-image: url("/static/img/link_icons/digg.png");
+}
+
+.icon-dribble {
+    background-image: url("/static/img/link_icons/dribble.png");
+}
+
+.icon-facebook {
+    background-image: url("/static/img/link_icons/facebook.png");
+}
+
+.icon-flickr {
+    background-image: url("/static/img/link_icons/flickr.png");
+}
+
+.icon-forrst {
+    background-image: url("/static/img/link_icons/forrst.png");
+}
+
+.icon-github {
+    background-image: url("/static/img/link_icons/github.png");
+}
+
+.icon-google {
+    background-image: url("/static/img/link_icons/google.png");
+}
+
+.icon-instagram {
+    background-image: url("/static/img/link_icons/instagram.png");
+}
+
+.icon-linkedin {
+    background-image: url("/static/img/link_icons/linkedin.png");
+}
+
+.icon-pinterest {
+    background-image: url("/static/img/link_icons/pinterest.png");
+}
+
+.icon-reddit {
+    background-image: url("/static/img/link_icons/reddit.png");
+}
+
+.icon-rss {
+    background-image: url("/static/img/link_icons/rss.png");
+}
+
+.icon-sharethis {
+    background-image: url("/static/img/link_icons/sharethis.png");
+}
+
+.icon-skype {
+    background-image: url("/static/img/link_icons/skype.png");
+}
+
+.icon-stumble-upon {
+    background-image: url("/static/img/link_icons/stumbleupon.png");
+}
+
+.icon-tumblr {
+    background-image: url("/static/img/link_icons/tumblr.png");
+}
+
+.icon-twitter {
+    background-image: url("/static/img/link_icons/twitter.png");
+}
+
+.icon-vimeo {
+    background-image: url("/static/img/link_icons/vimeo.png");
+}
+
+.icon-wordpress {
+    background-image: url("/static/img/link_icons/wordpress.png");
+}
+
+.icon-youtube {
+    background-image: url("/static/img/link_icons/youtube.png");
+}
+
+.icon-other {
+    background-image: url("/static/img/link_icons/other.png");
+}

@@ -156,7 +156,7 @@ INSTALLED_APPS = (
     'zinnia',
 )
 
-AUTH_PROFILE_MODULE = 'auth.StudentProfile'
+AUTH_PROFILE_MODULE = 'auth.UserProfile'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

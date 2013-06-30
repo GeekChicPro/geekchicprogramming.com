@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models import signals
 from auth.signals import create_profile
 
-class StudentProfile(models.Model):
+class UserProfile(models.Model):
 
     user      = models.OneToOneField( User, editable=False, related_name="profile" )
     biography = models.TextField( blank=True, null=True, default=None )
@@ -38,15 +38,15 @@ class StudentProfile(models.Model):
         returns None -- note an error is rasied if the name isn't in the
         SOCIAL_LINK_TYPES below.
         """
-        link_type = StudentLink.type_from_name(name)
+        link_type = ProfileLink.type_from_name(name)
         try:
-            return StudentLink.objects.get(profile=self, target=link_type)
-        except StudentLink.DoesNotExist:
+            return ProfileLink.objects.get(profile=self, target=link_type)
+        except ProfileLink.DoesNotExist:
             return None
 
     def delete(self, using=None):
         self.user.delete(using=using)
-        super(StudentProfile, self).delete(using=using)
+        super(UserProfile, self).delete(using=using)
 
     def __unicode__(self):
         return self.full_email
@@ -57,29 +57,34 @@ class StudentProfile(models.Model):
         db_table = "auth_profile"
 
 SOCIAL_LINK_TYPES = (
+    ("BL", "Blogger"),
     ("D", "Delicious"),
     ("DG", "Digg"),
+    ("Dr", "Dribble"),
     ("FB", "Facebook"),
     ("FL", "Flickr"),
+    ("FR", "Forrst"),
+    ("GH", "Github"),
     ("G", "Google"),
+    ("IG", "Instagram"),
     ("LI", "LinkedIn"),
-    ("P", "Picasa"),
+    ("P", "Pinterest"),
     ("R", "Reddit"),
     ("RS", "RSS"),
+    ("ST", "ShareThis"),
+    ("Sy", "Skype"),
     ("SU", "Stumble Upon"),
-    ("TI", "Technorati"),
     ("TR", "Tumblr"),
     ("TW", "Twitter"),
     ("V", "Vimeo"),
-    ("Y", "Yahoo"),
+    ("WP", "Wordpress"),
     ("YT", "YouTube"),
-    ("GH", "Github"),
     ("O", "Other"),
 )
 
-class StudentLink(models.Model):
+class ProfileLink(models.Model):
 
-    profile = models.ForeignKey( StudentProfile, related_name="links" )
+    profile = models.ForeignKey( UserProfile, related_name="links" )
     href    = models.URLField( verbose_name="URL" )
     target  = models.CharField( max_length=2, choices=SOCIAL_LINK_TYPES )
 
@@ -94,7 +99,7 @@ class StudentLink(models.Model):
         return klass._name_link_map[name]
 
     def get_css_class(self):
-        target = self.get_target_display().lower().replace(" ", "_")
+        target = self.get_target_display().lower().replace(" ", "-")
         return target
 
     def get_css_title(self):

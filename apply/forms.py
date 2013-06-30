@@ -1,6 +1,6 @@
 from django import forms
+from auth.models import Student
 from events.models import Fellowship
-from auth.models import Student, StudentProfile, StudentLink
 from django.utils.translation import ugettext_lazy as _
 from apply.models import FellowshipApplication, Enrollment
 from geekchic.utils.forms.widgets import BootstrapRadioRenderer, BootstrapCheckboxSelectMultiple
