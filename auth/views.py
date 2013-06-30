@@ -23,9 +23,9 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.http import base36_to_int
 from django.core.urlresolvers import reverse
-from django.views.generic import View, FormView, TemplateView
 from mixins import DispatchProtectionMixin, LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
+from django.views.generic import View, FormView, TemplateView, DetailView
 from django.contrib.auth import authenticate, REDIRECT_FIELD_NAME, login, logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 
@@ -41,6 +41,32 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
         context = super(UserProfileView, self).get_context_data(**kwargs)
         context['student'] = Student.fromUser(self.request.user)
         return context
+
+class TeacherProfileView(DetailView):
+    """
+    Hacked together detail view for teacher profiles. The teacher.html
+    template simply overrides the profile.html template and then empties
+    blocks that are not relevent. Teachers itself are determined by the
+    `get_object` logic that raises a 404 if the returned instance from the
+    super method is not a teacher or a teaching assitant. In the future,
+    we'll need a teacher manager to handle this.
+
+    Also note that the url is defined in the main urls.py -- we'll need to
+    abstract this better when we allow for both student and teacher
+    profiles in a more formal manner.
+    """
+
+    model = Student
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    template_name = "teacher.html"
+
+    def get_object(self):
+        instance = super(TeacherProfileView, self).get_object()
+        profile  = instance.profile
+        if not profile.is_teacher or not profile.is_tassist:
+            raise http.Http404("No teacher with the specified username found.")
+        return instance
 
 class ChangePasswordView(LoginRequiredMixin, FormView):
     """

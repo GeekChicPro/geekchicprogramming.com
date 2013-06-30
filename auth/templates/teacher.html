@@ -1,0 +1,16 @@
+{% extends 'profile.html' %}
+{% load profiletags %}
+
+{% block profileMeta %}{% endblock %}
+{% block accountManagement %}{% endblock %}
+
+{% block sidebar %}
+
+    {{ block.super }}
+
+    <div class="sidebar-block side-nav">
+        <h2>Latest Workshops</h2>
+        {% get_workshops_teaching %}
+    </div>
+
+{% endblock %}

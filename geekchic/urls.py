@@ -4,6 +4,7 @@ from django.contrib import admin
 from followers.views import AddFollower
 from feedback.views import ContactFormView
 from simplepage.views import SimplePageView
+from auth.views import TeacherProfileView
 
 admin.autodiscover()
 
@@ -15,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^privacy/$', TemplateView.as_view(template_name="privacy.html"), name="privacy"),
     url(r'^contact-us/$', ContactFormView.as_view(), name="contact"),
     url(r'^signup/$', AddFollower.as_view(), name="email_signup"),
+    url(r'^t/(?P<username>\w+)/', TeacherProfileView.as_view(), name="teacher_profile"),
     url(r'^programs/', include('events.urls')),
     url(r'^apply/', include('apply.urls')),
     url(r'^workshops/', include('workshop.urls')),

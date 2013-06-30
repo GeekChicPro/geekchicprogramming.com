@@ -1,4 +1,5 @@
 {% extends 'page.html' %}
+{% load profiletags %}
 
 {% block title %} GeekChic | {{ student.full_name|title }}{% endblock %}
 
@@ -16,20 +17,19 @@
         }
 
         ul.profile-links li {
-            margin-left: 0px;
-            margin-right: 2px;
+            margin: 0 2px 4px 0px;
             padding: 0;
         }
 
         .profile-links [class^="icon-"],
         .profile-links [class*=" icon-"] {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
             background-position: 0 0;
             background-repeat: no-repeat;
-            background-size: 20px 20px;
+            background-size: 22px 22px;
         }
 
         .profile-links [class^="icon-"]:before,
@@ -79,6 +79,7 @@
         </div>
     </div>
 
+    {% block profileMeta %}
     <div class="row" id="profileMeta">
         <div class="span9">
             <ul class="inline unstyled">
@@ -88,10 +89,22 @@
             </ul>
         </div>
     </div>
+    {% endblock %}
 
 {% endblock %}
 
 {% block sidebar %}
     <!-- ADD SIDEBAR WIDGETS HERE -->
-    {% include 'account-sidebar.html' %}
+    {% block accountManagement %}
+        {% include 'account-sidebar.html' %}
+    {% endblock %}
+
+    {% if student.get_author.entries_published %}
+    <!-- Latest Posts -->
+    <div class="sidebar-news-widget sidebar-block">
+        <h2>Recent Posts</h2>
+        {% get_author_entries %}
+    </div>
+    {% endif %}
+
 {% endblock %}

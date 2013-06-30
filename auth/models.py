@@ -7,12 +7,15 @@ from managers import StudentManager
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import signals
 from auth.signals import create_profile
+from zinnia.models import Author
 
 class UserProfile(models.Model):
 
-    user      = models.OneToOneField( User, editable=False, related_name="profile" )
-    biography = models.TextField( blank=True, null=True, default=None )
-    shortbio  = models.CharField( max_length=156, blank=True, null=True, default=None )
+    user       = models.OneToOneField( User, editable=False, related_name="profile" )
+    biography  = models.TextField( blank=True, null=True, default=None )
+    shortbio   = models.CharField( max_length=156, blank=True, null=True, default=None )
+    is_teacher = models.BooleanField( _("teacher or tutor"), default=False )
+    is_tassist = models.BooleanField( _("teaching assistant"), default=False )
 
     @property
     def gravatar(self):
@@ -147,6 +150,9 @@ class Student(User):
     @property
     def full_email(self):
         return self.get_profile().full_email
+
+    def get_author(self):
+        return Author.objects.get(pk=self.pk)
 
     class Meta:
         proxy= True

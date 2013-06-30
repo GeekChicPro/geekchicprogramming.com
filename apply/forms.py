@@ -120,7 +120,7 @@ class FellowshipApplicationForm(forms.ModelForm):
 
         links_data = {
             'twitter': {
-                'href': "https://.twitter.com/" + cleaned_data.pop('twitter').replace("@", ""),
+                'href': "https://twitter.com/" + cleaned_data.pop('twitter').replace("@", ""),
                 'target': "TW",
             },
             'linkedin': {
