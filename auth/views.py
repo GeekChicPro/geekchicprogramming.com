@@ -64,7 +64,7 @@ class TeacherProfileView(DetailView):
     def get_object(self):
         instance = super(TeacherProfileView, self).get_object()
         profile  = instance.profile
-        if not profile.is_teacher or not profile.is_tassist:
+        if not (profile.is_teacher or profile.is_tassist):
             raise http.Http404("No teacher with the specified username found.")
         return instance
 

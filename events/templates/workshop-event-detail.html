@@ -20,7 +20,7 @@
     <div class="teaching">
         <h3>Who's Teaching?</h3>
         {% for teacher in object.teachers.all %}
-        <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+        <h5><a href="{% url 'teacher_profile' username=teacher.username %}">{{ teacher.first_name }} {{ teacher.last_name }}</a></h5>
         <p>{{ teacher.get_profile.biography }}</p>
         {% endfor %}
         {% endif %}
@@ -28,7 +28,7 @@
         {% if object.assistants.all %}
         <h4>Teaching Assistants</h4>
         {% for assistant in object.assistants.all %}
-        <h5>{{ assistant.first_name }} {{ assistant.last_name }}</h5>
+        <h5><a href="{% url 'teacher_profile' username=assistant.username %}">{{ assistant.first_name }} {{ assistant.last_name }}</a></h5>
         <p>{{ assistant.get_profile.biography }}</p>
         {% endfor %}
         {% endif %}
